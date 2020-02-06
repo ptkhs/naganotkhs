@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :end_usres do
+    get 'items/index'
+    get 'items/show'
+  end
   devise_for :admins, controllers: {
   sessions:      'admins/sessions',
   passwords:     'admins/passwords',
