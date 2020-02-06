@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2020_02_06_060622) do
     t.string "zipcode"
     t.string "address"
     t.string "phone_number"
-    t.boolean "status"
+    t.boolean "status", default: true
     t.index ["email"], name: "index_end_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_end_users_on_reset_password_token", unique: true
   end

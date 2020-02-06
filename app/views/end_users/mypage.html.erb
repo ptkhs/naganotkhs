@@ -1,0 +1,25 @@
+<thead>
+    <tr>
+      <th>姓</th>
+      <th>名</th>
+      <th>姓カナ</th>
+      <th>名カナ</th>
+      <th>郵便番号</th>
+      <th>住所</th>
+      <th>電話番号</th>
+      <th>メールアドレス</th>
+    </tr>
+  </thead>
+  <br>
+  <tbody>
+    <tr>
+      <td><%= @end_user.lastname %></td>
+      <td><%= @end_user.firstname %></td>
+      <td><%= @end_user.lastname_kana %></td>
+      <td><%= @end_user.firstname_kana %></td>
+      <td><%= @end_user.zipcode %></td>
+      <td><%= @end_user.address %></td>
+      <td><%= @end_user.phone_number %></td>
+      <td><%= @end_user.email %></td>
+    </tr>
+</tbody>

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root to: "end_users/top#index"
   get '/about/', to: 'end_users/top#about'
+  get '/end_users/mypage', to: 'end_users#mypage'
   devise_for :admins, controllers: {
   sessions:      'admins/sessions',
   passwords:     'admins/passwords',
@@ -12,4 +13,3 @@ devise_for :end_users, controllers: {
   registrations: 'end_users/registrations'
 }
 end
-# unti
