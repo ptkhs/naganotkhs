@@ -13,6 +13,5 @@ class EndUsers::OrdersController < ApplicationController
 
   def create
   end
-
-# 後でdef send追加する
+  # def send後で入れる
 end

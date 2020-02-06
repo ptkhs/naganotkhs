@@ -1,3 +1,47 @@
-注文情報確認
-
-購入を確定する
+<div class="container">
+	<div class="row">
+		<div class="col-xs-9">
+            注文情報確認
+                <table>
+	                <thead>
+		               <tr>
+			              <th>商品名</th>
+			              <th>単価(税込)</th>
+			              <th>数量</th>
+			              <th>小計</th>
+		               </tr>
+	                </thead>
+	                <tbody>
+		              <tr>
+			              <td>ショートケーキ</td>
+			              <td>1,100</td>
+			              <td>1</td>
+			              <td>1,100</td>
+		              </tr>
+	                </tbody>
+                </table>
+        </div>
+        <div class="col-xs-3">
+        	<table>
+        		<tr>
+        			<td>送料</td>
+        			<td>800</td>
+        		</tr>
+        		<tr>
+        			<td>商品合計</td>
+        			<td>1,760</td>
+        		</tr>
+        		<tr>
+        			<td>請求金額</td>
+        			<td>2,500</td>
+        		</tr>
+        	</table>
+        </div>
+    </div>
+    <div class="row">
+    	<h2>支払い方法</h2> 銀行振込
+    	<h2>お届け先</h2> 〒000-0000 大阪府〜〜<br>
+    	山田花子
+    	<%= link_to "購入を確定する", orders_thanks_path, class: "btn btn-primary" %>
+    </div>
+</div>
