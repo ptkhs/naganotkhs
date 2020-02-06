@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     get 'orders/index'
     get 'orders/update'
   end
+
   namespace :admins do
     get 'items/index'
     get 'items/show'
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
     get 'items/new'
     get 'items/create'
   end
+
   scope module: :end_users do
     get 'orders/new'
     get 'orders/show'
@@ -20,15 +22,20 @@ Rails.application.routes.draw do
     post 'orders/send'
     get 'orders/thanks' => 'orders#thanks'
   end
+
   root to: "end_users/top#index"
   get '/about/', to: 'end_users/top#about'
   get '/end_users/mypage', to: 'end_users#mypage'
+  get '/end_users/edit', to: 'end_users#edit'
+  patch '/end_users/edit', to: 'end_users#update'
+  put '/end_users/edit', to: 'end_users#update'
 
   devise_for :admins, controllers: {
   sessions:      'admins/sessions',
   passwords:     'admins/passwords',
   registrations: 'admins/registrations'
 }
+
 devise_for :end_users, controllers: {
   sessions:      'end_users/sessions',
   passwords:     'end_users/passwords',
