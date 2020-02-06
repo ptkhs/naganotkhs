@@ -7,14 +7,16 @@ Rails.application.routes.draw do
     get 'items/new'
     get 'items/create'
   end
-  namespace :end_users do
-    get 'items/index'
-    get 'items/show'
+  scope module: :end_users do
+    resources :orders, only: [:new,:show,:create]
+    get 'orders/confirm'
+    post 'orders/send'
+    get 'orders/thanks' => 'orders#thanks'
   end
-  namespace :end_usres do
-    get 'items/index'
-    get 'items/show'
-  end
+  root to: "end_users/top#index"
+  get '/about/', to: 'end_users/top#about'
+  get '/end_users/mypage', to: 'end_users#mypage'
+  
   devise_for :admins, controllers: {
   sessions:      'admins/sessions',
   passwords:     'admins/passwords',
