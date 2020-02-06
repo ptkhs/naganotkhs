@@ -1,4 +1,5 @@
 <h1>商品一覧画面</h1>
+<table class="table">
 <thead>
     <tr>
       <th>商品ID</th>
@@ -14,6 +15,7 @@
     <tr>
       <td><%= item.id %></td>
       <td><%= item.name %></td>
+      <td><%= item.price %></td>
       <td>category表示するところ</td>
       <% if item.status = true %>
       	<td>販売中</td>
@@ -23,3 +25,5 @@
     </tr>
   <% end %>
 </tbody>
+</table>
+<%= link_to "新規登録", admins_item_new_path_path %>

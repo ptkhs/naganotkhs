@@ -7,11 +7,11 @@ Rails.application.routes.draw do
 
   namespace :admins do
     get 'items/', to: 'items#index'
-    get 'items/:id', to: 'items#show'
-    get 'items/:id/edit', to: 'items#edit'
+    get 'items/new', to: 'items#new', :as => :item_new_path
+    get 'items/:id', to: 'items#show', :as => :item_show_path
     patch 'items/:id', to: 'items#update'
     put 'items/:id', to: 'items#update'
-    get 'items/new', to: 'items#new'
+    get 'items/:id/edit', to: 'items#edit', :as => :item_edit
     post 'items/', to: 'items#create'
   end
 
