@@ -7,6 +7,6 @@ class AddXxxToEndUsers < ActiveRecord::Migration[5.2]
     add_column :end_users, :zipcode, :string
     add_column :end_users, :address, :string
     add_column :end_users, :phone_number, :string
-    add_column :end_users, :status, :boolean
+    add_column :end_users, :status, :boolean, default: true
   end
 end
