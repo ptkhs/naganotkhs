@@ -6,12 +6,13 @@ Rails.application.routes.draw do
   end
 
   namespace :admins do
-    get 'items/index'
-    get 'items/show'
-    get 'items/edit'
-    get 'items/update'
-    get 'items/new'
-    get 'items/create'
+    get 'items/', to: 'items#index'
+    get 'items/:id', to: 'items#show'
+    get 'items/:id/edit', to: 'items#edit'
+    patch 'items/:id', to: 'items#update'
+    put 'items/:id', to: 'items#update'
+    get 'items/new', to: 'items#new'
+    post 'items/', to: 'items#create'
   end
 
   scope module: :end_users do
