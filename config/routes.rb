@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  namespace :admins do
+    get 'items/index'
+    get 'items/show'
+    get 'items/edit'
+    get 'items/update'
+    get 'items/new'
+    get 'items/create'
+  end
+  namespace :end_users do
+    get 'items/index'
+    get 'items/show'
+  end
   namespace :end_usres do
     get 'items/index'
     get 'items/show'
