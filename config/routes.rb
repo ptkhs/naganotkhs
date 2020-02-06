@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  scope module: :end_users do
+    resources :orders, only: [:new,:show,:create]
+    get 'orders/confirm'
+    post 'orders/send'
+    get 'orders/thanks' => 'orders#thanks'
+  end
   root to: "end_users/top#index"
   get '/about/', to: 'end_users/top#about'
   get '/end_users/mypage', to: 'end_users#mypage'
