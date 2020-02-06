@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_06_061240) do
+ActiveRecord::Schema.define(version: 2020_02_06_064319) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -40,6 +40,14 @@ ActiveRecord::Schema.define(version: 2020_02_06_061240) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "lastname"
+    t.string "firstname"
+    t.string "lastname_kana"
+    t.string "firstname_kana"
+    t.string "zipcode"
+    t.string "address"
+    t.string "phone_number"
+    t.boolean "status", default: true
     t.index ["email"], name: "index_end_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_end_users_on_reset_password_token", unique: true
   end
@@ -51,6 +59,29 @@ ActiveRecord::Schema.define(version: 2020_02_06_061240) do
     t.text "discription"
     t.string "image_id"
     t.boolean "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "order_details", force: :cascade do |t|
+    t.integer "item_id"
+    t.integer "order_id"
+    t.integer "production_status"
+    t.integer "purchase_quantity"
+    t.integer "purchase_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "end_user_id"
+    t.string "paymethod"
+    t.string "zipcode"
+    t.string "address"
+    t.string "name"
+    t.integer "charge"
+    t.integer "status"
+    t.integer "fee"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   namespace :admins do
+    get 'orders/show'
+    get 'orders/index'
+    get 'orders/update'
+  end
+  namespace :admins do
     get 'items/index'
     get 'items/show'
     get 'items/edit'
@@ -8,7 +13,9 @@ Rails.application.routes.draw do
     get 'items/create'
   end
   scope module: :end_users do
-    resources :orders, only: [:new,:show,:create]
+    get 'orders/new'
+    get 'orders/show'
+    post 'orders/create'
     get 'orders/confirm'
     post 'orders/send'
     get 'orders/thanks' => 'orders#thanks'

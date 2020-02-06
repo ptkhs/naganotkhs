@@ -2,11 +2,18 @@
 購入情報入力
 
 <h2>支払い方法</h2>
-  <%= form_for (@order) do |f| %>
-  <label><%= f.radio_button :paymethod, "クレジットカード" %>クレジットカード</label>
+  <%= form_for (orders_new_path) do |f| %>
+    <label><%= f.radio_button :paymethod, "クレジットカード" %>クレジットカード</label>
+    <label><%= f.radio_button :paymethod, "銀行振込" %>銀行振込</label>
   <% end %>
-<!-- まだ動かないよ〜〜〜 -->
-お届け先
+<br>
+<h2>お届け先</h2>
+  <input type="radio" name="address" value="@user.address">ご自身の住所<br>
+  〒000-0000 大阪府〜〜<br>
+    	山田花子
+  <input type="radio" name="address">登録済住所から選択<br>
+  
+
 
 確認画面へ進む
 </div>
