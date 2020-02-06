@@ -5,6 +5,9 @@ Rails.application.routes.draw do
     post 'orders/send'
     get 'orders/thanks' => 'orders#thanks'
   end
+  root to: "end_users/top#index"
+  get '/about/', to: 'end_users/top#about'
+  get '/end_users/mypage', to: 'end_users#mypage'
   devise_for :admins, controllers: {
   sessions:      'admins/sessions',
   passwords:     'admins/passwords',
