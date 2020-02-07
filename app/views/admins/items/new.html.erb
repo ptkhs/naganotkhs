@@ -1,1 +1,27 @@
-
+<h1>商品 新規登録画面</h1>
+<%= form_for @item, url: admins_items_path do |f| %>
+   <div class="form-group has-icon">
+    <%= f.attachment_field :image, placeholder: "プロフィール画像", class: "user-edit-form" %>
+    </div>
+  <div class="form-group row">
+    <label for="item_name">商品名</label><br>
+    <%= f.text_field :name, class:'col-xs-12' %>
+  </div>
+  <div class="form-group row">
+    <label for="item_discription">商品説明</label><br>
+    <%= f.text_area :discription, class:'col-xs-12' %>
+  </div>
+  <div class="form-group row">
+    <label>ジャンル選択プルダウンが入る場所</label>
+  </div>
+  <div class="form-group row">
+    <label for="item_price">税抜き価格</label><br>
+    <%= f.number_field :price, class:'col-xs-12' %>
+  </div>
+  <div class="form-group row">
+    <label>販売ステータスプルダウンが入る場所</label>
+  </div>
+  <div class="actions row">
+    <%= f.submit '新規登録', class:'btn btn-primary col-xs-12' %>
+  </div>
+<% end %>

@@ -1,0 +1,27 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-3">
+<%= form_for @end_user, url: end_users_edit_path do |f| %>
+    <h2>User info</h2>
+    <Label>姓</Label>
+        <%= f.text_field :lastname, autofocus: true, class:"form-control", id:"inputname", placeholder:"姓"%>
+        <Label>名</Label>
+        <%= f.text_field :firstname, autofocus: true, class:"form-control", id:"inputname", placeholder:"名"%>
+        <Label>姓(カナ)</Label>
+        <%= f.text_field :lastname_kana, autofocus: true, class:"form-control", id:"inputname", placeholder:"姓(カナ)"%>
+        <Label>名(カナ)</Label>
+        <%= f.text_field :firstname_kana, autofocus: true, class:"form-control", id:"inputname", placeholder:"名(カナ)"%>
+        <Label>郵便番号</Label>
+    <%= f.number_field :zipcode, autofocus: true, class:"form-control", id:"inputname", placeholder:"郵便番号"%>
+    <Label>住所</Label>
+    <%= f.text_field :address, autofocus: true, class:"form-control", id:"inputname", placeholder:"住所"%>
+    <Label>電話番号</Label>
+    <%= f.number_field :phone_number, autofocus: true, class:"form-control", id:"inputname", placeholder:"電話番号"%>
+    <Label>メールアドレス</Label>
+        <%= f.email_field :email, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"email"%>
+    <%= f.submit "編集内容を保存する", class:"btn btn-lg btn-block btn-base-1 mt-20" %>
+<% end %>
+</div>
+</div>
+</div>
