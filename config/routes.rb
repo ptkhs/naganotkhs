@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  namespace :end_users do
-    get 'destinations/index'
-    get 'destinations/update'
-    get 'destinations/edit'
-    get 'destinations/destroy'
+  scope module: :end_users do
+    get ':end_users_id/destinations', to: 'destinations#index', :as => :destinations_index
+    patch ':end_users_id/destinations', to: 'destinations#update', :as => :destinations_update
+    get ':end_users_id/destinations/:id/edit', to: 'destinations#edit', :as => :destinations_edit
+    delete ':end_users_id/destinations/:id', to: 'destinations#destroy', :as => :destinations_destroy
+    post ':end_users_id/destinations', to: 'destinations#create', :as => :destinations_create
   end
   namespace :admins do
     get 'categories/index'

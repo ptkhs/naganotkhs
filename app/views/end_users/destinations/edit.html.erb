@@ -1,2 +1,10 @@
-<h1>EndUsers::Destinations#edit</h1>
-<p>Find me in app/views/end_users/destinations/edit.html.erb</p>
+<h2>配送先編集</h2>
+	<%= form_for @destination, url: destinations_index_path(id: @destination.id) do |f| %>
+	郵便番号
+	<%= f.text_field :zipcode %>
+	住所
+	<%= f.text_field :address %>
+	宛名
+	<%= f.text_field :name %>
+	<%= f.submit "登録する", class: "btn btn-prymary" %>
+	    <% end %>

@@ -1,5 +1,5 @@
 class EndUsers::OrdersController < ApplicationController
-  # before_action :authenticate_user!
+  before_action :authenticate_end_user!
   def confirm
   end
 
@@ -7,7 +7,7 @@ class EndUsers::OrdersController < ApplicationController
     @order = Order.new
     @end_user = current_end_user
     @end_user_info = @end_user.address,@end_user.zipcode,@end_user.lastname,@end_user.firstname
-    @destination = Destination.where(end_user_id: '@end_user')
+    @destination = @end_user.destinations
 
   end
 
