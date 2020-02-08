@@ -8,11 +8,19 @@ class ApplicationController < ActionController::Base
     end
 
   def after_sign_in_path_for(resource)
-  case resource
-  	when Admin
-    	admins_root_path
- 	when EndUser
-    	root_path
+
+  	@end_user = resource
+  	if @end_user.status
+  		case resource
+  			when Admin
+    			admins_root_path
+ 			when EndUser
+    			root_path
+  			end
+    else
+    	sign_out @end_user
+      	flash[:error] = "このアカウントは退会済みです"
+      	root_path
   	end
   end
   def after_sign_out_path_for(resource)

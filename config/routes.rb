@@ -26,6 +26,8 @@ Rails.application.routes.draw do
 
   root to: "end_users/top#index"
   get '/admins', to: 'admins/top#index', :as => :admins_root
+  get '/end_users/close', to: 'end_users#bye', :as => :end_users_bye
+  patch '/end_users/close', to: 'end_users#close'
   get '/about/', to: 'end_users/top#about'
   get '/end_users/mypage', to: 'end_users#mypage'
   get '/end_users/edit', to: 'end_users#edit'
