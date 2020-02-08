@@ -1,0 +1,14 @@
+      <td>顧客ID</td><td><%= @end_user.id %></td>
+      <% if @end_user.status %>
+        <td>有効会員</td>
+      <% else %>
+        <td>退会済</td>
+      <% end %>
+      <td>氏名</td><td><%= @end_user.lastname %><%= @end_user.firstname %></td><br>
+      <td>フリガナ</td><td><%= @end_user.lastname_kana %><%= @end_user.firstname_kana %></td><br>
+      <td>郵便番号</td><td><%= @end_user.zipcode %></td><br>
+      <td>住所</td><td><%= @end_user.address %></td><br>
+      <td>電話番号</td><%= @end_user.phone_number %>
+      <td>メールアドレス</td><%= @end_user.email %>
+<%= link_to "編集する", admins_end_users_edit_path(@end_user) %>
+注文履歴一覧を見る
