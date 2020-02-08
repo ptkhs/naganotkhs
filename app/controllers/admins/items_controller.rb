@@ -1,11 +1,12 @@
 class Admins::ItemsController < ApplicationController
+  before_action :authenticate_admin!
   def index
     @items = Item.all
   end
 
   def show
     @item = Item.find(params[:id])
-    @price_zeikomi = @item.price * 1.10
+    @price_zeikomi = (@item.price * 1.10).to_i
   end
 
   def edit

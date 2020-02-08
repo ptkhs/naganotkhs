@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  namespace :end_users do
+    get 'destinations/index'
+    get 'destinations/update'
+    get 'destinations/edit'
+    get 'destinations/destroy'
+  end
+  namespace :admins do
+    get 'categories/index'
+    get 'categories/edit'
+    get 'categories/update'
+    get 'categories/create'
+  end
   namespace :admins do
     get 'orders/show'
     get 'orders/index'
@@ -16,15 +28,20 @@ Rails.application.routes.draw do
   end
 
   scope module: :end_users do
-    get 'orders/new'
-    get 'orders/show'
-    post 'orders/create'
+    get 'orders/new', to: 'orders#new', :as => :orders_new
+    post 'orders/new'
+    get 'orders/:id', to: 'orders#show', :as => :orders_show
+    post 'orders/', to: 'orders#create', :as => :orders_create
     get 'orders/confirm'
-    post 'orders/send'
+    post 'orders/confirm', to: 'orders#send', :as => :orders_send
     get 'orders/thanks' => 'orders#thanks'
+    get 'orders/index'
   end
 
   root to: "end_users/top#index"
+  get '/admins', to: 'admins/top#index', :as => :admins_root
+  get '/end_users/close', to: 'end_users#bye', :as => :end_users_bye
+  patch '/end_users/close', to: 'end_users#close'
   get '/about/', to: 'end_users/top#about'
   get '/end_users/mypage', to: 'end_users#mypage'
   get '/end_users/edit', to: 'end_users#edit'
@@ -33,8 +50,6 @@ Rails.application.routes.draw do
 
   devise_for :admins, controllers: {
   sessions:      'admins/sessions',
-  passwords:     'admins/passwords',
-  registrations: 'admins/registrations'
 }
 
 devise_for :end_users, controllers: {
@@ -44,6 +59,4 @@ devise_for :end_users, controllers: {
 }
 
   resources :carts, only: [:index]
-
-
 end
