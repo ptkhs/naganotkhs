@@ -27,6 +27,13 @@ Rails.application.routes.draw do
     post 'items/', to: 'items#create'
   end
 
+  namespace :admins do
+    get 'end_users/', to: 'end_users#index', :as => :end_users_index
+    get 'end_users/:id/edit', to: 'end_users#edit', :as => :end_users_edit
+    get 'end_users/:id', to: 'end_users#show', :as => :end_users_show
+    patch 'end_users/:id', to: 'end_users#update'
+  end
+
   scope module: :end_users do
     get 'orders/new', to: 'orders#new', :as => :orders_new
     post 'orders/new'

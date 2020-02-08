@@ -1,0 +1,26 @@
+<h1>会員一覧画面</h1>
+<table class="table">
+<thead>
+    <tr>
+      <th>会員ID</th>
+      <th>氏名</th>
+      <th>メールアドレス</th>
+      <th>ステータス</th>
+    </tr>
+  </thead>
+  <br>
+  <tbody>
+      <% @end_users.each do |end_user| %>
+    <tr>
+      <td><%= end_user.id %></td>
+      <td><%= link_to "#{end_user.lastname}#{end_user.firstname}", admins_end_users_show_path(end_user) %></td>
+      <td><%= end_user.email %></td>
+      <% if end_user.status %>
+      	<td>有効</td>
+      <% else %>
+        <td>退会済</td>
+      <% end %>
+    </tr>
+  <% end %>
+</tbody>
+</table>
