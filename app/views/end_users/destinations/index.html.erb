@@ -1,2 +1,30 @@
-<h1>EndUsers::Destinations#index</h1>
-<p>Find me in app/views/end_users/destinations/index.html.erb</p>
+<h2>配送先登録/一覧</h2>
+	<%= form_for @destination, url: destinations_index_path(id: @destination.id) do |f| %>
+	郵便番号
+	<%= f.text_field :zipcode %>
+	住所
+	<%= f.text_field :address %>
+	宛名
+	<%= f.text_field :name %>
+	<%= f.submit "登録する", class: "btn btn-prymary" %>
+	    <% end %>
+<table>
+	<thead>
+		<tr>
+			<td>郵便番号</td>
+			<td>住所</td>
+			<td>宛名</td>
+			<td></td>
+		</tr>
+	</thead>
+	<tbody>
+		<% @destinations.each  do |d| %>
+		<tr>
+			<td><%= d.zipcode %></td>
+			<td><%= d.address %></td>
+			<td><%= d.name %></td>
+			<td><%= link_to "編集する", destinations_edit_path(d.end_user_id, d), class: "btn btn-prymary" %>
+				<%= link_to "削除する", destinations_destroy_path(d.end_user_id, d), class: "btn btn-danger", method: :delete %></td>
+
+		</tr>
+		<% end %>

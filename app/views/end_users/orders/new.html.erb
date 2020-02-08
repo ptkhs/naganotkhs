@@ -15,7 +15,7 @@
         <%= @end_user.address %>
         <%= @end_user.lastname %>
         <%= @end_user.firstname %>
-      <label><%= f.radio_button [:zipcode,:address,:name], @destination %>登録済住所から選択</label>
+      <label><%= f.radio_button [:zipcode,:address,:name], options_from_collection_for_select(@destination, :zipcode, :address, :name) %>登録済住所から選択</label>
       <%= f.select [:zipcode,:address,:name], @destination %>
       <label><%= f.radio_button :address, @address %>新しいお届け先</label>
         郵便番号<%= f.text_field :zipcode %>ハイフンなし
