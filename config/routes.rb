@@ -7,10 +7,10 @@ Rails.application.routes.draw do
     post ':end_users_id/destinations', to: 'destinations#create', :as => :destinations_create
   end
   namespace :admins do
-    get 'categories/index'
-    get 'categories/edit'
-    get 'categories/update'
-    get 'categories/create'
+    get 'categories', to: "categories#index"
+    get 'categories/:id', to: "categories#edit"
+    post 'categories', to: "categories#create", :as => :categories_create
+    patch 'categories/:id', to: "categories#update", :as => :categories_update
   end
   namespace :admins do
     get 'orders/show'
