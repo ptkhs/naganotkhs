@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   end
 
   root to: "end_users/top#index"
+  get '/admins', to: 'admins/top#index', :as => :admins_root
   get '/about/', to: 'end_users/top#about'
   get '/end_users/mypage', to: 'end_users#mypage'
   get '/end_users/edit', to: 'end_users#edit'
@@ -33,8 +34,6 @@ Rails.application.routes.draw do
 
   devise_for :admins, controllers: {
   sessions:      'admins/sessions',
-  passwords:     'admins/passwords',
-  registrations: 'admins/registrations'
 }
 
 devise_for :end_users, controllers: {
@@ -44,6 +43,4 @@ devise_for :end_users, controllers: {
 }
 
   resources :carts, only: [:index]
-
-
 end
