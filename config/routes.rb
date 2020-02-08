@@ -58,5 +58,9 @@ devise_for :end_users, controllers: {
   registrations: 'end_users/registrations'
 }
 
-  resources :carts, only: [:index]
+  get '/carts', to: 'carts#index'
+  patch'/carts', to: 'carts#update'
+
+
+
 end
