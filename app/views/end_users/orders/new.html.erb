@@ -2,18 +2,26 @@
 購入情報入力
 
 <h2>支払い方法</h2>
-  <%= form_for (orders_new_path) do |f| %>
-    <label><%= f.radio_button :paymethod, "クレジットカード" %>クレジットカード</label>
-    <label><%= f.radio_button :paymethod, "銀行振込" %>銀行振込</label>
-  <% end %>
+  <%= form_for (orders_confirm_path) do |f| %>
+    <%= form_for (orders_confirm_path) do |f| %>
+      <label><%= f.radio_button :paymethod, "クレジットカード" %>クレジットカード</label>
+      <label><%= f.radio_button :paymethod, "銀行振込" %>銀行振込</label>
+    <% end %>
 <br>
 <h2>お届け先</h2>
-  <input type="radio" name="address" value="@user.address">ご自身の住所<br>
-  〒000-0000 大阪府〜〜<br>
-    	山田花子
-  <input type="radio" name="address">登録済住所から選択<br>
-  
-
-
-確認画面へ進む
+    <%= form_for (orders_confirm_path) do |f| %>
+      <label><%= f.radio_button [:zipcode,:address,:name], @end_user_info %>ご自身の住所</label>
+        <%= @end_user.zipcode %>
+        <%= @end_user.address %>
+        <%= @end_user.lastname %>
+        <%= @end_user.firstname %>
+      <label><%= f.radio_button [:zipcode,:address,:name], @destination %>登録済住所から選択</label>
+      <%= f.select [:zipcode,:address,:name], @destination %>
+      <label><%= f.radio_button :address, @address %>新しいお届け先</label>
+        郵便番号<%= f.text_field :zipcode %>ハイフンなし
+        住所<%= f.text_field :address %>
+        宛名<%= f.text_field :name %>
+      <%= f.submit '確認画面へ進む', class: "btn btn-primary" %>
+      <% end %>
+    <% end %>
 </div>

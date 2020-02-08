@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
+  namespace :end_users do
+    get 'destinations/index'
+    get 'destinations/update'
+    get 'destinations/edit'
+    get 'destinations/destroy'
+  end
   namespace :admins do
-    get 'orders/show'
-    get 'orders/index'
-    get 'orders/update'
+    get 'orders/:id', to: 'orders#show', :as => :orders_show
+    get 'orders/', to: 'orders#index', :as => :orders_index
+    patch 'orders/:id', to: 'orders#update', :as => :orders_update
   end
 
   namespace :admins do
@@ -16,12 +22,14 @@ Rails.application.routes.draw do
   end
 
   scope module: :end_users do
-    get 'orders/new'
-    get 'orders/show'
-    post 'orders/create'
+    get 'orders/new', to: 'orders#new', :as => :orders_new
+    post 'orders/new'
+    get 'orders/:id', to: 'orders#show', :as => :orders_show
+    post 'orders/', to: 'orders#create', :as => :orders_create
     get 'orders/confirm'
-    post 'orders/send'
+    post 'orders/confirm', to: 'orders#send', :as => :orders_send
     get 'orders/thanks' => 'orders#thanks'
+    get 'orders/index'
   end
 
   root to: "end_users/top#index"
