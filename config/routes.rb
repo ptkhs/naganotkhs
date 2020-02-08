@@ -6,9 +6,15 @@ Rails.application.routes.draw do
     get 'destinations/destroy'
   end
   namespace :admins do
-    get 'orders/:id', to: 'orders#show', :as => :orders_show
-    get 'orders/', to: 'orders#index', :as => :orders_index
-    patch 'orders/:id', to: 'orders#update', :as => :orders_update
+    get 'categories/index'
+    get 'categories/edit'
+    get 'categories/update'
+    get 'categories/create'
+  end
+  namespace :admins do
+    get 'orders/show'
+    get 'orders/index'
+    get 'orders/update'
   end
 
   namespace :admins do
