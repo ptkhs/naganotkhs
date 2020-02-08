@@ -1,9 +1,44 @@
-カートの一覧表示ページ<br>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+</head>
 
 
-ショッピングカート
-<%= @items.each do |items| %>
+
+<h1>ショッピングカート</h1><br>
+
+
+
+
+<table>
+	<thead>
+		<tr>
+			<th>商品名</th>
+			<th>単価(税込)</th>
+			<th>数量</th>
+			<th>小計</th>
+			<th colspan="2"></th>
+		</tr>
+	</thead>
+	<% current_end_user.carts.each do |cart| %>
+	<tbody>
+		<tr>
+			<td><%= cart.item.name %></td>
+			<td><%= cart.item.price %></td>
+			<td><%= cart.item_quantity %></td>
+			<td>小計を表示</td>
+			<td>削除ボタン</td>
+		</tr>
+	</tbody>
+</table>
 
 <% end %>
+
+<br>
+<tr>
+	<td>合計金額</td>
+	<td><%= current_end_user.cart_items.all.sum(:price) %></td>
+</tr>
 
 
