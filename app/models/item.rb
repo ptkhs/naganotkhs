@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
 	attachment :image
-	has_many :carts
-	belongs_to :end_users
+	has_many :carts, dependent: :destroy
+
 end
