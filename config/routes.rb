@@ -22,10 +22,9 @@ Rails.application.routes.draw do
     get 'items/', to: 'items#index'
     get 'items/new', to: 'items#new', :as => :item_new_path
     get 'items/:id', to: 'items#show', :as => :item_show_path
-    patch 'items/:id', to: 'items#update'
-    put 'items/:id', to: 'items#update'
+    patch 'items/:id', to: 'items#update', :as => :item_update
     get 'items/:id/edit', to: 'items#edit', :as => :item_edit
-    post 'items/', to: 'items#create'
+    post 'items/', to: 'items#create', :as => :item_create
   end
 
 
@@ -71,6 +70,8 @@ devise_for :end_users, controllers: {
 
   get '/carts', to: 'carts#index'
   patch'/carts', to: 'carts#update'
+  delete'/carts/:id', to: 'carts#destroy', :as => :carts_destroy
+  delete'/carts/', to: 'carts#empty', :as => :carts_empty
 
 
 
