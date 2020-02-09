@@ -1,5 +1,6 @@
 class EndUsers::DestinationsController < ApplicationController
 	before_action :authenticate_end_user!
+  before_action :header_login_check
   def index
   	@destination = Destination.new
   	@end_user = current_end_user

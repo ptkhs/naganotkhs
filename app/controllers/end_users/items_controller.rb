@@ -1,4 +1,5 @@
 class EndUsers::ItemsController < ApplicationController
+	before_action :header_login_check
   def index
   	  @item = Item.new
   	  @items = Item.all

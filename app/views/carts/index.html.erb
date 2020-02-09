@@ -4,43 +4,49 @@
 	<meta charset="utf-8">
 </head>
 
+<body>
+
 <h1>ショッピングカート</h1><br>
+<h2><%= link_to 'カートを空にする', carts_empty_path, method: :delete %></h2>
 
-<table>
-	<thead>
-		<tr>
-			<th>商品名</th>
-			<th>単価(税込)</th>
-			<th>数量</th>
-			<th>小計</th>
-			<th colspan="2"></th>
-		</tr>
-	</thead>
-	<% current_end_user.carts.each do |cart| %>
-	<tbody>
-		<tr>
-			<td><%= cart.item.name %></td>
-			<td><%= cart.item.price * 1.10 %></td>
-		<%= form_for (cart), url: carts_path do |f| %>
-			<td><%= f.number_field :item_quantity %></td>
-			<td><%= f.hidden_field :id, :value => cart.id %></td>
-			<td>小計</td>
-			<td><%= f.submit '更新' %></td>
-			<td><%=  cart.item.price * 1.10 %></td>
-			<td><%= (cart.item.price * cart.item_quantity) * 1.10.to_i %></td>
-			<td>削除ボタン</td>
-			<% end %>
-		</tr>
-	</tbody>
-</table>
 
-<% end %>
+<div class = "container">
+	<div class = "row">
+		<table>
+			<thead>
+				<tr>
+					<th>商品名</th>
+					<th>単価(税込)</th>
+					<th>数量</th>
+					<th>小計</th>
+					<th></th>
+				</tr>
+			</thead>
+    <% current_end_user.carts.each do |cart| %>
+			<tbody>
+				<tr>
+					<td><%= cart.item.name %></td>
+					<td><%= cart.item.price * 1.10 %></td>
+				        <%= form_for (cart), url: carts_path do |f| %>
+					<td><%= f.number_field :item_quantity %></td>
+					<%= f.hidden_field :id, :value => cart.id %>
+					<td><%=  cart.item.price * 1.10 %><%= f.submit '更新' %></td>
+						<% end %>
+						<td><%= link_to '削除', carts_destroy_path(cart.id), method: :delete %></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
 
-<br>
-<tr>
-	<td>買い物を続けるリンク</td>
-	<td>合計金額</td>
-	<td><%= current_end_user.cart_items.all.sum(:price) *1.10 %></td>
-</tr>
+	<% end %>
 
+	<br>
+	<tr>
+		<td><%= link_to '買い物を続ける',root_path %></td><br>
+		<h3><td>合計金額</td></h3>
+		<td><%= current_end_user.cart_items.all.sum(:price) *1.10 %></td>
+	</tr>
+</body>
+</html>
 
