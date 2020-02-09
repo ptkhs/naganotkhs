@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-
+	before_action :header_login_check
 	def index
 	end
 

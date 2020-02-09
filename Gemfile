@@ -67,3 +67,4 @@ gem "refile-mini_magick"
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise'
 gem 'pry-byebug'
+gem 'jquery-rails'
