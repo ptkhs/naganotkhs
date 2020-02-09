@@ -67,6 +67,8 @@ devise_for :end_users, controllers: {
 
   get '/carts', to: 'carts#index'
   patch'/carts', to: 'carts#update'
+  delete'/carts/:id', to: 'carts#destroy', :as => :carts_destroy
+  delete'/carts/', to: 'carts#empty', :as => :carts_empty
 
 
 
