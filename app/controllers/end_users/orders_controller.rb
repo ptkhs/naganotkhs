@@ -1,4 +1,5 @@
 class EndUsers::OrdersController < ApplicationController
+  before_action :header_login_check
   before_action :authenticate_end_user!
   def confirm
   end

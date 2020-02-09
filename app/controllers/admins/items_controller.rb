@@ -1,4 +1,5 @@
 class Admins::ItemsController < ApplicationController
+  before_action :header_login_check
   before_action :authenticate_admin!
   def index
     @items = Item.all
@@ -15,11 +16,8 @@ class Admins::ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
-        if @item.update(item_params)
-            redirect_to admins_item_show_path_path(@item)
-        else
-            render :edit
-        end
+    @item.update(item_params)
+    redirect_to admins_item_show_path_path(@item)
   end
 
   def new
@@ -28,11 +26,8 @@ class Admins::ItemsController < ApplicationController
 
   def create
       @item = Item.new(item_params)
-        if @item.save
-            redirect_to admins_item_show_path_path(@item)
-        else
-            render 'admins_item_new_path'
-        end
+      @item.save
+      redirect_to admins_item_show_path_path(@item)
   end
 
   def item_params

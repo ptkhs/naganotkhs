@@ -7,14 +7,13 @@
 
  <h3>ジャンル</h3>
   <%= form_for @category, url: admins_categories_create_path do |f| %>
-
    <%= f.text_field :name %><br>
-
-   <%= check_box_tag :test1 %>
-    <%= label_tag :test1, "有効" %>
-
-   <%= check_box_tag :test2 %>
-    <%= label_tag :test2, "無効" %>
+    <%= f.label :available %>
+  <%= f.collection_select(:available, @destinations, :id, :name) %>
+  <%= f.radio_button :available, :"true" %>
+  <%= f.label :available, "有効", {value: :true, style: "display: inline-block;"} %>
+  <%= f.radio_button :available, :false %>
+  <%= f.label :available, "無効", {value: :false, style: "display: inline-block;"} %>
 
    <%= f.submit '追加' %>
  <br><br>
