@@ -8,14 +8,11 @@
  <h3>ジャンル</h3>
   <%= form_for @category, url: admins_categories_create_path do |f| %>
 
-   <%= f.text_field :name %><br>
+   <%= f.text_field :name %><br><br>
 
-   <%= check_box_tag :test1 %>
-    <%= label_tag :test1, "有効" %>
-
-   <%= check_box_tag :test2 %>
-    <%= label_tag :test2, "無効" %>
-
+   <label><%= f.radio_button :available, :true %> 有効 </label>
+　　<label><%= f.radio_button :available, :false %> 無効</label>
+　　<br>
    <%= f.submit '追加' %>
  <br><br>
   </div>
@@ -33,9 +30,16 @@
     <tbody>
            <% @categories.each do |category| %>
            <tr>
-            <td>
+             <td>
                <%= category.name %>
-            </td>
+             </td>
+
+            <% if category.available %>
+             <td>有効</td>
+            <% else %>
+             <td>無効</td>
+            <% end %>
+
             <td>
                <%= link_to "編集", admins_path(category) %>
             </td>
