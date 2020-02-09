@@ -27,6 +27,9 @@ Rails.application.routes.draw do
     post 'items/', to: 'items#create', :as => :item_create
   end
 
+
+    get "items/:id", to: "items#show", :as => :items_show
+
   namespace :admins do
     get 'end_users/', to: 'end_users#index', :as => :end_users_index
     get 'end_users/:id/edit', to: 'end_users#edit', :as => :end_users_edit

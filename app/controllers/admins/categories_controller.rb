@@ -12,7 +12,7 @@ class Admins::CategoriesController < ApplicationController
 
   def update
   	  @category = Category.find(params[:id])
-	  @category.update(category_params)
+      @category.update(category_params)
   	  redirect_to admins_categories_path(@category)
   end
 
