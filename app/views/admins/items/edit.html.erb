@@ -1,4 +1,4 @@
-<%= form_for @item, url: admins_path do |f| %>
+<%= form_for @item, url: admins_item_update_path(@item) do |f| %>
     <h2>商品編集画面</h2>
     <div class="item-image">
         <%= attachment_image_tag @item, :image, :fill, 200, 200, class: "img-circle pull-left profile-thumb", fallback: ""%>

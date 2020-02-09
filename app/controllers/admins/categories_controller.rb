@@ -1,7 +1,9 @@
 class Admins::CategoriesController < ApplicationController
+  before_action :header_login_check
   def index
-  	  @category = Category.new
-  	  @categories = Category.all
+  　　@category = Category.new
+  　　@categories = Category.all
+      @end_user = current_end_user
   end
 
   def edit
@@ -12,7 +14,6 @@ class Admins::CategoriesController < ApplicationController
   	  @category = Category.find(params[:id])
 	  @category.update(category_params)
   	  redirect_to admins_categories_path(@category)
-
   end
 
   def create
