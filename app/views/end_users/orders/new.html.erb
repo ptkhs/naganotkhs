@@ -2,21 +2,29 @@
 購入情報入力
 
 <h2>支払い方法</h2>
-  <%= form_for @order, url: orders_create_path do |f| %>
-    <input type="radio" name="paymethod" value="クレジットカード">クレジットカード
-    <input type="radio" name="paymethod" value="銀行振込">銀行振込
+  <%= form_for @order, url: orders_send_path do |f| %>
+    <%= f.radio_button :paymethod, "クレジットカード", checked:true %>クレジットカード
+    <%= f.radio_button :paymethod, "銀行振込" %>銀行振込
 <br>
 <h2>お届け先</h2>
-     <input type="radio" name="destination" value="">
-      <%= f.label [:zipcode, :address], "ご自身の住所" %>
-        <%= @end_user.zipcode %>
-        <%= @end_user.address %>
-        <%= @end_user.lastname %>
-        <%= @end_user.firstname %>
-        <%= f.collection_select(:destination, @destination, :address, :address) %>
-        郵便番号<%= f.text_field :zipcode %>ハイフンなし
-        住所<%= f.text_field :address %>
-        宛名<%= f.text_field :name %>
+     <%= f.radio_button :destination, "1", checked:true %>ご自身の住所<br>
+        <%= current_end_user.zipcode %>
+        <%= current_end_user.address %><br>
+        <%= current_end_user.lastname %>
+        <%= current_end_user.firstname %><br>
+     <%= f.radio_button :destination, "2" %>登録済住所から選択<br>
+        <select id="destination" name="destination">
+          <option><%= current_end_user.destinations.each do |destination| %>
+          <option value=""><%= destination.zipcode %>
+          <%= destination.address %>
+          <%= destination.name %></option>
+        <% end %>
+          </option>
+        </select><br>
+     <%= f.radio_button :destination, "3" %>新しいお届け先<br>
+        郵便番号<%= f.text_field :zipcode %>ハイフンなし<br>
+        住所<%= f.text_field :address %><br>
+        宛名<%= f.text_field :name %><br>
       <%= f.submit '確認画面へ進む', class: "btn btn-primary" %>
     <% end %>
 </div>

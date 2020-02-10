@@ -40,11 +40,11 @@ Rails.application.routes.draw do
   scope module: :end_users do
     get 'orders/new', to: 'orders#new', :as => :orders_new
     post 'orders/new'
-    get 'orders/:id', to: 'orders#show', :as => :orders_show
     post 'orders/', to: 'orders#create', :as => :orders_create
-    get 'orders/confirm'
-    post 'orders/confirm', to: 'orders#send', :as => :orders_send
+    get 'orders/confirm', to: 'orders#confirm', :as => :orders_confirm
+    post 'orders/confirm', to: 'orders#sending', :as => :orders_send
     get 'orders/thanks' => 'orders#thanks'
+    get 'orders/:id', to: 'orders#show', :as => :orders_show
     get 'orders/index'
   end
 
