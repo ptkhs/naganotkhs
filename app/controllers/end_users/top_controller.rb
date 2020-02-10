@@ -3,7 +3,7 @@ class EndUsers::TopController < ApplicationController
 	def index
       @end_user = current_end_user
       @items = Item.all
-      @categories = Category.all
+      @categories = Category.where(available: true)
 	end
 
 	def about

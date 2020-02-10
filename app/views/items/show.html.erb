@@ -1,0 +1,14 @@
+<div class = "item-image">
+	<%= attachment_image_tag @item, :image, :fill, 200, 200, class: "", fallback: ""%>
+</div>
+
+<td><%= @item.name %></td><br>
+<td><%= @item.discription %></td><br>
+<td>¥</td><td><%= (@price_zeikomi).to_i %></td><td>(税込)</td>
+<br>
+
+<%= form_for (@cart) do |f| %>
+
+
+<%= f.submit "カートに入れる" %>
+<% end %>
