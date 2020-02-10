@@ -7,7 +7,7 @@
 <td>¥</td><td><%= (@price_zeikomi).to_i %></td><td>(税込)</td>
 <br>
 
-<%= form_for (@cart) do |f| %>
+<%= form_for (@item),url: carts_add_path do |f| %>
 
 <%= f.submit "カートに入れる" %>
 <% end %>

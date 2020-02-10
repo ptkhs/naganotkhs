@@ -27,11 +27,11 @@
 					<tbody>
 						<tr>
 							<td><%= cart.item.name %></td>
-							<td><%= cart.item.price * 1.10 %></td>
+							<td><%= (cart.item.price * 1.10).to_i %></td>
 							<%= form_for (cart), url: carts_path do |f| %>
 							<td><%= f.number_field :item_quantity %></td>
 							<%= f.hidden_field :id, :value => cart.id %>
-							<td><%=  cart.item.price * 1.10 %> <%= f.submit '更新', class: "btn-sm btn-default"%></td>
+							<td><%=  (cart.item.price * 1.10).to_i %> <%= f.submit '更新', class: "btn-sm btn-default"%></td>
 							<% end %>
 							<td><%= link_to '削除', carts_destroy_path(cart.id), method: :delete, class: "btn-sm btn-danger" %></td>
 						</tr>
@@ -44,7 +44,7 @@
 		<div class ="pull-right">
 			<tr>
 				<h1><td>合計金額
-					<%= current_end_user.cart_items.all.sum(:price) *1.10 %></td></h1>
+					<%= (current_end_user.cart_items.all.sum(:price)*1.10).to_i %></td></h1>
 				</tr>
 			</div><br>
 			<%= link_to '情報入力に進む',"#", class: "btn-lg btn-info"  %>

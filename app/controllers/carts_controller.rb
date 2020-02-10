@@ -4,10 +4,17 @@ class CartsController < ApplicationController
 	end
 
 	def create
-		@cart_item = Cart.find(cart_params[:id])
-		item = current_end_user.cart.new(cart_id: cart.id)
-		cart.save
+		@cart_item = current_end_user.carts.find_by(item_id: params[:id])
+		if @cart_item.blank?
+		item = Item.find(params[:id])
+		cart_item = Cart.new(item_id:item.id,end_user_id:current_end_user.id,item_quantity:1)
+		cart_item.save
 		redirect_to carts_path
+	    else
+	    @cart_item.item_quantity += 1
+		@cart_item.save
+		redirect_to carts_path
+	end
 	end
 
 	def update
