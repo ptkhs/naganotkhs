@@ -1,11 +1,10 @@
 class Admins::CategoriesController < ApplicationController
-before_action :header_login_check
-def index
-  @category = Category.new
-  @categories = Category.all
-  @end_user = current_end_user
-end
-
+  before_action :header_login_check
+  def index
+      @category = Category.new
+      @categories = Category.all
+      @end_user = current_end_user
+  end
 def edit
 	  @category = Category.find(params[:id])
 end
