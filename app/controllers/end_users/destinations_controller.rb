@@ -26,6 +26,7 @@ class EndUsers::DestinationsController < ApplicationController
   def create
   	@destination = Destination.new(destination_params)
   	@destination.end_user_id = current_end_user.id
+    @destination.fulladdress = @destination.zipcode + @destination.address + @destination.name
   	@destination.save
   	redirect_to destinations_index_path
   end

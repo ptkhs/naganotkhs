@@ -9,16 +9,6 @@ class EndUsers::OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    if :destination == "1"
-      :zipcode = current_end_user.zipcode
-      :address = current_end_user.address
-      :name = current_end_user.lastname + current_end_user.firstname
-    elsif :destination == "2"
-      :zipcode = current_end_user.destinations.zipcode
-      :address = current_end_user.destinations.address
-      :name = current_end_user.destinations.name
-    else :destination == "3"
-    end
   end
 
   def show
@@ -29,6 +19,17 @@ class EndUsers::OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
+    case @order.destselect
+    when 1
+      @order.address = current_end_user.address
+      @order.zipcode = current_end_user.zipcode
+      @order.name = current_end_user.lastname + current_end_user.firstname
+    when 2
+      @order.address = Destination.find(@order.addressint).address
+      @order.zipcode = Destination.find(@order.addressint).zipcode
+      @order.name = Destination.find(@order.addressint).name
+    end
+    binding.pry
     @order.save
     redirect_to orders_confirm_path
   end
@@ -43,6 +44,6 @@ class EndUsers::OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:end_user_id, :paymethod, :zipcode, :address, :name, :charge, :status, :fee, :destination)
+    params.require(:order).permit(:end_user_id, :paymethod, :zipcode, :address, :name, :charge, :status, :fee, :destination, :destselect, :addressint)
   end
 end
