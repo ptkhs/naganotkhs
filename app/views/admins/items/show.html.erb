@@ -6,7 +6,7 @@
       <td>ジャンル</td><td>ここにジャンルが入ります</td><br>
       <td>税抜き価格</td><td><%= @item.price %></td><br>
       <td>税込み価格</td><td><%= @price_zeikomi %></td><br>
-      <td>販売ステータス</td><% if @item.status = true %>
+      <td>販売ステータス</td><% if @item.status %>
       	<td>販売中</td><br>
       <% else %>
       	<td>販売停止中</td><br>

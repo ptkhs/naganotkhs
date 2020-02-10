@@ -15,9 +15,9 @@
     <tr>
       <td><%= item.id %></td>
       <td><%= link_to item.name, admins_item_show_path_path(item) %></td>
-      <td><%= item.price %></td>
-      <td>category表示するところ</td>
-      <% if item.status = true %>
+      <td><%= (item.price).to_s(:delimited) %></td>
+      <td><%= item.category.name %></td>
+      <% if item.status %>
       	<td>販売中</td>
       <% else %>
         <td>販売停止中</td>

@@ -29,7 +29,9 @@ class EndUsers::OrdersController < ApplicationController
       @order.zipcode = Destination.find(@order.addressint).zipcode
       @order.name = Destination.find(@order.addressint).name
     end
-    binding.pry
+    @buying_items = current_end_user.carts
+    @order.end_user_id = current_end_user.id
+    @order.fee = 800
     @order.save
     redirect_to orders_confirm_path
   end
