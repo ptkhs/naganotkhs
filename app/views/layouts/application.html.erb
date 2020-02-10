@@ -7,13 +7,42 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   <title></title>
 </head>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <li><%= link_to root_path do %>
+      <span class="navbar-brand" href="#">ピカチュウ</span>
+      <% end %>
+    </li>
+    </div>
+
+<ul class="nav navbar-nav navbar-right">
+
 <body>
   <% if end_user_signed_in? %>
-  <li><span class="glyphicon glyphicon-log-in"><%= @header_login_name %>様ようこそ</span></li>
-  <li><span class="glyphicon glyphicon-log-out"><%= link_to " logout", destroy_end_user_session_path, method: :delete %></span></li>
-        <li><span class="glyphicon glyphicon-link"><%= link_to " About", about_path %></span></li>
-        <li><span class="glyphicon glyphicon-log-in"><%= link_to " カート", carts_path %></span></li>
-        <li><span class="glyphicon glyphicon-log-in"><%= link_to " マイページ", end_users_mypage_path %></span></li>
+
+         <li><span class="glyphicon glyphicon-log-in"><%= @header_login_name %>様ようこそ</span></li>
+
+         <li><%= link_to destroy_end_user_session_path, method: :delete do %><span class="glyphicon glyphicon-log-out">Logout</span>
+         <% end %>
+         </li>
+
+        <li><%= link_to about_path do %>
+          <span class="glyphicon glyphicon-link">About</span>
+        <% end %>
+        </li>
+
+        <li><%= link_to carts_path do %>
+          <span class="glyphicon glyphicon-log-in">cart</span>
+　　　　　<% end %>
+        </li>
+
+        <li><%= link_to end_users_mypage_path do %>
+          <span class="glyphicon glyphicon-log-in">my</span>
+　　　　　<% end %>
+        </li>
+      </ul></nav>
 
   <% else %>
   <% if admin_signed_in? %>
@@ -22,12 +51,28 @@
         <li><span class="glyphicon glyphicon-log-in"><%= link_to " 会員一覧", admins_end_users_index_path %></span></li>
         <li><span class="glyphicon glyphicon-log-in"><%= link_to " 注文履歴一覧", admins_orders_index_path %></span></li>
         <li><span class="glyphicon glyphicon-log-in"><%= link_to " ジャンル管理", admins_categories_path %></span></li>
+
   <% else %>
-  <li><span class="glyphicon glyphicon-home"><%= link_to " Home", root_path %></span></li>
-        <li><span class="glyphicon glyphicon-link"><%= link_to " About", about_path %></span></li>
-        <li><span class="glyphicon glyphicon-log-in"><%= link_to " login", new_end_user_session_path %></span></li>
+  <li><%= link_to root_path do %>
+  <span class="glyphicon glyphicon-home">HOME</span>
+  <% end %>
+  </li>
+
+  <li><%= link_to about_path do %>
+  <span class="glyphicon glyphicon-link">About</span>
+  <% end %>
+  </li>
+
+  <li><%= link_to new_end_user_session_path do %>
+  <span class="glyphicon glyphicon-log-in"> Login</span>
+  <% end %>
+  </li>
+
+  </ul></nav>
+
   <% end %>
   <% end %>
   <%= yield %>
+
 </body>
 </html>
