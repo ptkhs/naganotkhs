@@ -8,41 +8,53 @@
   <title></title>
 </head>
 
-<nav class="navbar navbar-inverse">
+
+<body>
+  <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <li><%= link_to root_path do %>
-      <span class="navbar-brand" href="#">ピカチュウ</span>
-      <% end %>
-    </li>
+      <li>
+        <%= link_to root_path do %>
+        <span class="navbar-brand" href="#">ピカチュウ</span>
+        <% end %>
+      </li>
     </div>
 
 <ul class="nav navbar-nav navbar-right">
 
-<body>
+
   <% if end_user_signed_in? %>
 
-         <li><span class="glyphicon glyphicon-log-in"><%= @header_login_name %>様ようこそ</span></li>
+         <li>
+          <span class="glyphicon glyphicon-log-in">
+            <%= @header_login_name %>様ようこそ</span>
+          </li>
 
-         <li><%= link_to destroy_end_user_session_path, method: :delete do %><span class="glyphicon glyphicon-log-out">Logout</span>
-         <% end %>
+         <li>
+          <%= link_to destroy_end_user_session_path, method: :delete do %>
+            <span class="glyphicon glyphicon-log-out">Logout</span>
+          <% end %>
          </li>
 
-        <li><%= link_to about_path do %>
-          <span class="glyphicon glyphicon-link">About</span>
-        <% end %>
+        <li>
+          <%= link_to about_path do %>
+            <span class="glyphicon glyphicon-link">About</span>
+          <% end %>
         </li>
 
-        <li><%= link_to carts_path do %>
-          <span class="glyphicon glyphicon-log-in">cart</span>
-　　　　　<% end %>
+        <li>
+          <%= link_to carts_path do %>
+            <span class="glyphicon glyphicon-log-in">カート</span>
+　　　　　   <% end %>
         </li>
 
-        <li><%= link_to end_users_mypage_path do %>
-          <span class="glyphicon glyphicon-log-in">my</span>
-　　　　　<% end %>
+        <li>
+          <%= link_to end_users_mypage_path do %>
+            <span class="glyphicon glyphicon-log-in">マイページ</span>
+　　　　　  <% end %>
         </li>
-      </ul></nav>
+</ul>
+</nav>
 
   <% else %>
   <% if admin_signed_in? %>
