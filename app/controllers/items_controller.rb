@@ -7,7 +7,6 @@ class ItemsController < ApplicationController
   def show
       @item = Item.find(params[:id])
       @price_zeikomi = (@item.price * 1.10)
-      @cart = Cart.new
   end
 
   def item_params
