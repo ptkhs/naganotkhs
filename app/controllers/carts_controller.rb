@@ -4,6 +4,10 @@ class CartsController < ApplicationController
 	end
 
 	def create
+		@cart_item = Cart.find(cart_params[:id])
+		item = current_end_user.cart.new(cart_id: cart.id)
+		cart.save
+		redirect_to carts_path
 	end
 
 	def update
