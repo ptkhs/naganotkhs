@@ -2,7 +2,7 @@ class EndUsers::OrdersController < ApplicationController
   before_action :header_login_check
   before_action :authenticate_end_user!
   def confirm
-    @order = Order.find(params[:id])
+    @order = Order.find(order_params)
     @carts = Cart.all
     # 仮
   end
