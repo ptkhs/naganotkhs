@@ -6,18 +6,22 @@
 	                <thead>
 		               <tr>
 			              <th>商品名</th>
+                          <th colspan="2"></th>
 			              <th>単価(税込)</th>
 			              <th>数量</th>
 			              <th>小計</th>
 		               </tr>
 	                </thead>
 	                <tbody>
+                        <% @carts.each do |cart| %>
 		              <tr>
-			              <td>ショートケーキ</td>
-			              <td>1,100</td>
-			              <td>1</td>
+                          <td><%= attachment_image_tag cart.item, :image, :fill, 60, 60, format: 'jpeg' %></td>
+			              <td><%= cart.item.name %></td>
+			              <td><%= cart.item.price %></td>
+			              <td><%= cart.item_quantity %></td>
 			              <td>1,100</td>
 		              </tr>
+                      <% end %>
 	                </tbody>
                 </table>
         </div>
@@ -39,9 +43,10 @@
         </div>
     </div>
     <div class="row">
-    	<h2>支払い方法</h2> 銀行振込
+    	<h2>支払い方法</h2>
+        <%= @order.paymethod %>
     	<h2>お届け先</h2> 〒000-0000 大阪府〜〜<br>
-    	山田花子
+    	<%= @order.zipcode, @order.address, @order.name %>
     	<%= link_to "購入を確定する", orders_thanks_path, class: "btn btn-primary" %>
     </div>
 </div>

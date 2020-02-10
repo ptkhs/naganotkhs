@@ -3,50 +3,52 @@
 <head>
 	<meta charset="utf-8">
 </head>
+　<div class = "container">
+	<body>
 
-<body>
+		<h1>ショッピングカート</h1><br>
+		<div class ="pull-right">
+			<h2><%= link_to 'カートを空にする', carts_empty_path, method: :delete, class: "btn-lg btn-danger" %></h2></br>
+		</div>
 
-<h1>ショッピングカート</h1><br>
-<h2><%= link_to 'カートを空にする', carts_empty_path, method: :delete %></h2>
-
-
-<div class = "container">
-	<div class = "row">
-		<table>
-			<thead>
-				<tr>
-					<th>商品名</th>
-					<th>単価(税込)</th>
-					<th>数量</th>
-					<th>小計</th>
-					<th></th>
+		<div class = "row">
+			<div class ="col-xs-12">
+				<table class ="table table-bordered">
+					<thead>
+						<tr>
+							<th>商品名</th>
+							<th>単価(税込)</th>
+							<th>数量</th>
+							<th>小計</th>
+							<th></th>
+						</tr>
+					</thead>
+					<% current_end_user.carts.each do |cart| %>
+					<tbody>
+						<tr>
+							<td><%= cart.item.name %></td>
+							<td><%= cart.item.price * 1.10 %></td>
+							<%= form_for (cart), url: carts_path do |f| %>
+							<td><%= f.number_field :item_quantity %></td>
+							<%= f.hidden_field :id, :value => cart.id %>
+							<td><%=  cart.item.price * 1.10 %> <%= f.submit '更新', class: "btn-sm btn-default"%></td>
+							<% end %>
+							<td><%= link_to '削除', carts_destroy_path(cart.id), method: :delete, class: "btn-sm btn-danger" %></td>
+						</tr>
+					</tbody>
+					<% end %>
+				</table>
+			</div>
+		</div>
+		<td><%= link_to '買い物を続ける',root_path, class: "btn-lg btn-info" %></td><br>
+		<div class ="pull-right">
+			<tr>
+				<h1><td>合計金額
+					<%= current_end_user.cart_items.all.sum(:price) *1.10 %></td></h1>
 				</tr>
-			</thead>
-    <% current_end_user.carts.each do |cart| %>
-			<tbody>
-				<tr>
-					<td><%= cart.item.name %></td>
-					<td><%= cart.item.price * 1.10 %></td>
-				        <%= form_for (cart), url: carts_path do |f| %>
-					<td><%= f.number_field :item_quantity %></td>
-					<%= f.hidden_field :id, :value => cart.id %>
-					<td><%=  cart.item.price * 1.10 %><%= f.submit '更新' %></td>
-						<% end %>
-						<td><%= link_to '削除', carts_destroy_path(cart.id), method: :delete %></td>
-				</tr>
-			</tbody>
-		</table>
+			</div><br>
+			<%= link_to '情報入力に進む',"#", class: "btn-lg btn-info"  %>
 	</div>
-</div>
-
-	<% end %>
-
-	<br>
-	<tr>
-		<td><%= link_to '買い物を続ける',root_path %></td><br>
-		<h3><td>合計金額</td></h3>
-		<td><%= current_end_user.cart_items.all.sum(:price) *1.10 %></td>
-	</tr>
 </body>
 </html>
 
