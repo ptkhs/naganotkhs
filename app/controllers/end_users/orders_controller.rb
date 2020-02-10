@@ -2,7 +2,7 @@ class EndUsers::OrdersController < ApplicationController
   before_action :header_login_check
   before_action :authenticate_end_user!
   def confirm
-    @order = Order.find(params[:id])
+    @order = Order.find(order_params)
     @carts = Cart.all
     # 仮
   end
@@ -29,7 +29,6 @@ class EndUsers::OrdersController < ApplicationController
       @order.zipcode = Destination.find(@order.addressint).zipcode
       @order.name = Destination.find(@order.addressint).name
     end
-    binding.pry
     @order.save
     redirect_to orders_confirm_path
   end
