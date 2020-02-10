@@ -1,3 +1,4 @@
+<div class="container">
 <h1>商品 新規登録画面</h1>
 <%= form_for @item, url: admins_item_create_path do |f| %>
    <div class="form-group has-icon">
@@ -12,16 +13,18 @@
     <%= f.text_area :discription, class:'col-xs-12' %>
   </div>
   <div class="form-group row">
-    <label>ジャンル選択プルダウンが入る場所</label>
+    <%= f.collection_select(:category_id, @categories, :id, :name) %>
   </div>
   <div class="form-group row">
     <label for="item_price">税抜き価格</label><br>
     <%= f.number_field :price, class:'col-xs-12' %>
   </div>
   <div class="form-group row">
-    <label>販売ステータスプルダウンが入る場所</label>
+    <select name="item[status]" id="item_status"><option value="1">販売中</option>
+<option value="0">販売停止中</option></select>
   </div>
   <div class="actions row">
     <%= f.submit '新規登録', class:'btn btn-primary col-xs-12' %>
   </div>
 <% end %>
+</div>

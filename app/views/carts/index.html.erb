@@ -47,7 +47,7 @@
 					<%= (current_end_user.cart_items.all.sum(:price)*1.10).to_i %></td></h1>
 				</tr>
 			</div><br>
-			<%= link_to '情報入力に進む',"#", class: "btn-lg btn-info"  %>
+			<%= link_to '情報入力に進む', orders_new_path, class: "btn-lg btn-info"  %>
 	</div>
 </body>
 </html>

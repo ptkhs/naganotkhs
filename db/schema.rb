@@ -105,5 +105,4 @@ ActiveRecord::Schema.define(version: 2020_02_10_074602) do
     t.integer "destselect"
     t.integer "addressint"
   end
-
 end
