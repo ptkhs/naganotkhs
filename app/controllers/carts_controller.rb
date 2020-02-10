@@ -1,6 +1,11 @@
 class CartsController < ApplicationController
 	before_action :header_login_check
 	def index
+		@cart_total_price = 0
+		@cart_items = current_end_user.carts
+		@cart_items.each do |cart|
+		@cart_total_price += (cart.item.price) * (cart.item_quantity) * 1.10
+	end
 	end
 
 	def create
