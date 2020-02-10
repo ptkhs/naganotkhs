@@ -1,0 +1,26 @@
+<div class="containar">
+  <div class="row">
+    <div class="col-xs-3">
+<h1>ジャンル検索</h1>
+<% @categories.each do |category| %>
+    <tr>
+      <td><h2><%= link_to category.name, end_users_categories_show_path(category) %></h2></td><br>
+    </tr>
+  <% end %>
+      </div>
+      <div class ="col-xs-8">
+
+<h1>わかんね</h1>
+
+<table class="table">
+  <tbody>
+      <% @items.each do |item| %>
+    <tr>
+      <td><%= attachment_image_tag item, :image, :fill, 200, 200, class: "", fallback: ""%><td>
+      <td><%= link_to item.name, items_show_path(item) %></td>
+      <td><%= item.price %></td>
+    </tr>
+  <% end %>
+</tbody>
+</table>
+</div>

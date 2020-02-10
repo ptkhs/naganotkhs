@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  namespace :end_users do
+    get 'categories/:id', to: "categories#show", :as => :categories_show
+  end
+
   scope module: :end_users do
     get ':end_users_id/destinations', to: 'destinations#index', :as => :destinations_index
     patch ':end_users_id/destinations', to: 'destinations#update', :as => :destinations_update
