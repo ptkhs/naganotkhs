@@ -1,2 +1,67 @@
-<h1>Admins::Orders#show</h1>
-<p>Find me in app/views/admins/orders/show.html.erb</p>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<h2>注文詳細画面</h2>
+			<table class="table">
+				<tr>
+					<td>購入者</td>
+					<td><%= @order.end_user_name %></td>
+				</tr>
+				<tr>
+					<td>配送先</td>
+					<td><%= @order %></td>
+				</tr>
+				<tr>
+					<td>支払方法</td>
+					<td><%= @order.paymethod %></td>
+				</tr>
+				<tr>
+					<td>注文ステータス</td>
+					<td>セレクトボックスでいじれるようにする</td>
+					<td>更新ボタン</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-8">
+			<table>
+				<thead>
+					<tr>
+						<th>商品名</th>
+						<th>単価（税込）</th>
+						<th>数量</th>
+						<th>小計</th>
+						<th>制作ステータス</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @order_items.each do |item| %>
+					<tr>
+						<td><%= item.name %></td>
+						<td><%= item.price %></td>
+						<td><%= item.quantity %></td>
+						<td><%= item.price * item.quantity %></td>
+						<td>セレクトボックス</td>
+						<td>更新ボタン</td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-xs-4">
+			<table class="table">
+				<tr>
+					<td>商品合計</td>
+					<td>7000円</td>
+				</tr>
+				<tr>
+					<td>送料</td>
+					<td>800円</td>
+					<td>請求金額合計</td>
+					<td>7800円</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
