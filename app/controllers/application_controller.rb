@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   def header_login_check
     if admin_signed_in?
       @header_login_name = "admin"
+    else
       if end_user_signed_in?
         @header_login_name = "#{current_end_user.lastname}#{current_end_user.firstname}"
       end
