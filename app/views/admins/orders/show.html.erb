@@ -36,14 +36,16 @@
 					</tr>
 				</thead>
 				<tbody>
+					<% @order_items.each do |item| %>
 					<tr>
-						<td>洋梨タルト</td>
-						<td>1200</td>
-						<td>1</td>
-						<td>1200</td>
+						<td><%= item.name %></td>
+						<td><%= item.price %></td>
+						<td><%= item.quantity %></td>
+						<td><%= item.price * item.quantity %></td>
 						<td>セレクトボックス</td>
 						<td>更新ボタン</td>
 					</tr>
+					<% end %>
 				</tbody>
 			</table>
 		</div>
