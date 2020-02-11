@@ -1,7 +1,7 @@
 <div class="containar">
   <div class="row">
     <div class="col-xs-3">
-<h1>ジャンル検索</h1>
+<h1>ジャンル検索</h1><br>
 <% @categories.each do |category| %>
     <tr>
       <td><h2><%= link_to category.name, end_users_categories_show_path(category) %></h2></td><br>

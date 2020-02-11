@@ -26,65 +26,107 @@
   <% if end_user_signed_in? %>
 
          <li>
-          <span class="glyphicon glyphicon-log-in">
-            <%= @header_login_name %>様ようこそ</span>
-          </li>
-
-         <li>
-          <%= link_to destroy_end_user_session_path, method: :delete do %>
-            <span class="glyphicon glyphicon-log-out">Logout</span>
-          <% end %>
+           <a>
+            <span class="glyphicon glyphicon-user"><%= @header_login_name %>様ようこそ</span>
+           </a>
          </li>
 
-        <li>
-          <%= link_to about_path do %>
+         <li>
+           <a href="/end_users/mypage"><span class="glyphicon glyphicon-folder-open"></span>  マイページ</a>
+         </li>
+
+         <li>
+           <a href="/carts"><span class="glyphicon glyphicon-shopping-cart"></span>  カート</a>
+         </li>
+
+         <li>
+           <%= link_to about_path do %>
             <span class="glyphicon glyphicon-link">About</span>
-          <% end %>
-        </li>
+           <% end %>
+         </li>
 
-        <li>
-          <%= link_to carts_path do %>
-            <span class="glyphicon glyphicon-log-in">カート</span>
-　　　　　   <% end %>
-        </li>
-
-        <li>
-          <%= link_to end_users_mypage_path do %>
-            <span class="glyphicon glyphicon-log-in">マイページ</span>
-　　　　　  <% end %>
-        </li>
+         <li>
+           <%= link_to destroy_end_user_session_path, method: :delete do %>
+            <span class="glyphicon glyphicon-log-out">ログアウト</span>
+           <% end %>
+         </li>
 </ul>
-</nav>
+  </nav>
 
   <% else %>
+
   <% if admin_signed_in? %>
-  <li><span class="glyphicon glyphicon-log-in"><%= @header_login_name %>でログイン中です</span></li>
-        <li><span class="glyphicon glyphicon-link"><%= link_to " 商品一覧", admins_items_path %></span></li>
-        <li><span class="glyphicon glyphicon-log-in"><%= link_to " 会員一覧", admins_end_users_index_path %></span></li>
-        <li><span class="glyphicon glyphicon-log-in"><%= link_to " 注文履歴一覧", admins_orders_index_path %></span></li>
-        <li><span class="glyphicon glyphicon-log-in"><%= link_to " ジャンル管理", admins_categories_path %></span></li>
+
+         <li>
+           <a>
+            <%= @header_login_name %>でログイン中です
+           </a>
+         </li>
+
+         <li>
+           <%= link_to admins_items_path do %>
+            <span class="glyphicon glyphicon-list"> 商品一覧</span>
+           <% end %>
+         </li>
+
+         <li>
+           <%= link_to admins_end_users_index_path do %>
+            <span class="glyphicon glyphicon-user"> 会員一覧</span>
+           <% end %>
+         </li>
+
+         <li>
+           <%= link_to admins_orders_index_path do %>
+            <span class="glyphicon glyphicon-list-alt"> 注文履歴一覧</span>
+           <% end %>
+        　</li>
+
+         <li>
+           <%= link_to admins_categories_path do %>
+            <span class="glyphicon glyphicon-edit"> ジャンル管理</span>
+           <% end %>
+         </li>
+
+         <li>
+           <%= link_to destroy_admin_session_path, method: :delete do %>
+            <span class="glyphicon glyphicon-log-out"> ログアウト</span>
+           <% end %>
+         </li>
+
+</ui>
+  </nav>
 
   <% else %>
-  <li><%= link_to root_path do %>
-  <span class="glyphicon glyphicon-home">HOME</span>
-  <% end %>
-  </li>
 
-  <li><%= link_to about_path do %>
-  <span class="glyphicon glyphicon-link">About</span>
-  <% end %>
-  </li>
+         <li>
+           <%= link_to root_path do %>
+            <span class="glyphicon glyphicon-home">HOME</span>
+           <% end %>
+         </li>
 
-  <li><%= link_to new_end_user_session_path do %>
-  <span class="glyphicon glyphicon-log-in"> Login</span>
-  <% end %>
-  </li>
+         <li>
+           <%= link_to about_path do %>
+            <span class="glyphicon glyphicon-link">About</span>
+           <% end %>
+           </li>
 
-  </ul></nav>
+         <li>
+           <%= link_to new_end_user_session_path do %>
+            <span class="glyphicon glyphicon-log-in"> Login</span>
+           <% end %>
+         </li>
 
+         <li>
+           <%= link_to new_admin_session_path do %>
+            <span class="glyphicon glyphicon-off"> Admins</span>
+           <% end %>
+         </li>
+</ul>
+  </nav>
+
+   <% end %>
   <% end %>
-  <% end %>
-  <%= yield %>
+<%= yield %>
 
 </body>
 </html>
