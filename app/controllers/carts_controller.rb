@@ -3,23 +3,23 @@ class CartsController < ApplicationController
 	def index
 		@cart_total_price = 0
 		@cart_items = current_end_user.carts
-		@cart_items.each do |cart|
+	  @cart_items.each do |cart|
 		@cart_total_price += (cart.item.price) * (cart.item_quantity) * 1.10
-	end
+	  end
 	end
 
 	def create
 		@cart_item = current_end_user.carts.find_by(item_id: params[:id])
-		if @cart_item.blank?
+	  if @cart_item.blank?
 		item = Item.find(params[:id])
 		cart_item = Cart.new(item_id:item.id,end_user_id:current_end_user.id,item_quantity:1)
 		cart_item.save
 		redirect_to carts_path
-	    else
+	  else
 	    @cart_item.item_quantity += 1
 		@cart_item.save
 		redirect_to carts_path
-	end
+	  end
 	end
 
 	def update
