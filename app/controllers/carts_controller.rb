@@ -39,7 +39,7 @@ class CartsController < ApplicationController
 
 
 	def empty
-		@cart_items = Cart.all
+		@cart_items = Cart.where(end_user_id:current_end_user)
 		@cart_items.destroy_all
 		redirect_to carts_path
 	end
