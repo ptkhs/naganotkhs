@@ -12,12 +12,21 @@
   		</tr>
   	</thead>
   	<tbody>
-  		<tr>2019/11/5</tr>
-  		<tr>〒住所宛名</tr>
-  		<tr>注文商品一覧</tr>
-  		<tr>〜円</tr>
-  		<tr>注文ステータス拾う</tr>
-  		<tr>詳細ページのリンク</tr>
+      <% @orders.each do |order| %>
+    <tr>
+  		<td><%= order.created_at %></td>
+  		<td><%= order.zipcode + order.address + order.name %></td>
+      <td>
+  		<% order.order_details.each do |od| %>
+        <%= od.item.name %>
+          <% end %>
+        </td>
+  		<td><%= order.charge %></td>
+  		<td><%= order.status %></td>
+  		<td><%= link_to "表示する", orders_show_path(order), class: "btn btn-primary" %></td>
+    </tr>
+      <% end %>
   	</tbody>
   </table>
+  <%= paginate @orders %>
 </div>
