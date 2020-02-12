@@ -2,7 +2,7 @@
 購入情報入力
 
 <h2>支払い方法</h2>
-  <%= form_for @order, url: orders_create_path do |f| %>
+  <%= form_for @pre_order, url: orders_create_path do |f| %>
     <%= f.radio_button :paymethod, "クレジットカード", checked:true %>クレジットカード
     <%= f.radio_button :paymethod, "銀行振込" %>銀行振込
 <br>
@@ -13,7 +13,7 @@
         <%= current_end_user.lastname %>
         <%= current_end_user.firstname %><br>
      <%= f.radio_button :destselect, 2 %>登録済住所から選択<br>
-        <%= f.collection_select(:addressint, current_end_user.destinations, :id, :fulladdress) %>
+        <%= f.collection_select(:addressint, current_end_user.destinations, :id, :fulladdress) %><br>
      <%= f.radio_button :destselect, 3 %>新しいお届け先<br>
         郵便番号<%= f.text_field :zipcode %>ハイフンなし<br>
         住所<%= f.text_field :address %><br>

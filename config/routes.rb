@@ -18,9 +18,9 @@ Rails.application.routes.draw do
     patch 'categories/:id', to: "categories#update", :as => :categories_update
   end
   namespace :admins do
+    patch 'orders/:id', to: "orders#update", :as => :orders_update
     get 'orders/:id', to: "orders#show", :as => :orders_show
     get 'orders/', to: "orders#index", :as => :orders_index
-    patch 'orders/:id', to: "orders#update", :as => :orders_update
   end
 
   namespace :admins do
@@ -48,6 +48,7 @@ Rails.application.routes.draw do
     post 'orders/', to: 'orders#create', :as => :orders_create
     get 'orders/confirm', to: 'orders#confirm', :as => :orders_confirm
     post 'orders/confirm', to: 'orders#sending', :as => :orders_send
+    delete 'orders/:id', to: 'orders#destroy', :as => :orders_destroy
     get 'orders/thanks' => 'orders#thanks'
     get 'orders/index'
     get 'orders/:id', to: 'orders#show', :as => :orders_show
