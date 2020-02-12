@@ -15,7 +15,8 @@
     <%= f.text_area :discription, class:'col-xs-12' %>
   </div>
   <div class="form-group row">
-    <label>ジャンル選択プルダウンが入る場所</label>
+    <label for="category_id">ジャンル</label><br>
+    <%= f.collection_select(:category_id, @categories, :id, :name) %>
   </div>
   <div class="form-group row">
     <label for="item_price">税抜き価格</label><br>

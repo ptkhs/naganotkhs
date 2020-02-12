@@ -3,7 +3,7 @@
     </div>
 	  <td>商品名</td><td><%= @item.name %></td><br>
       <td>商品説明</td><td><%= @item.discription %></td><br>
-      <td>ジャンル</td><td>ここにジャンルが入ります</td><br>
+      <td>ジャンル</td><td><%= @item.category.name %></td><br>
       <td>税抜き価格</td><td><%= @item.price %></td><br>
       <td>税込み価格</td><td><%= @price_zeikomi %></td><br>
       <td>販売ステータス</td><% if @item.status %>
