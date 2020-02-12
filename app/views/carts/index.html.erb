@@ -3,12 +3,13 @@
 <head>
 	<meta charset="utf-8">
 </head>
-　<div class = "container">
+<div class = "container">
 	<body>
 
 		<h1>ショッピングカート</h1><br>
 		<div class ="pull-right">
-			<h2><%= link_to 'カートを空にする', carts_empty_path, method: :delete, class: "btn-lg btn-danger" %></h2></br>
+	<% if current_end_user.carts.count > 0  %>
+			<h2><%= link_to 'カートを空にする', carts_empty_path, method: :delete, data:{confirm: 'カートを空にして本当によろしいですか？'}, class: "btn-lg btn-danger" %></h2></br>
 		</div>
 
 		<div class = "row">
@@ -24,9 +25,9 @@
 						</tr>
 					</thead>
 					<% current_end_user.carts.each do |cart| %>
-					<tbody>
+					　<tbody>
 						<tr>
-							<td><%= attachment_image_tag cart.item, :image, :fill, 200, 200, class: "", fallback: ""%><%= cart.item.name %></td>
+							<td><%= attachment_image_tag cart.item, :image, :fill, 50, 50, class: "", fallback: ""%><%= cart.item.name %></td>
 							<td><%= (cart.item.price * 1.10).to_i.to_s(:delimited) %></td>
 							<%= form_for (cart), url: carts_path do |f| %>
 							<td><%= f.number_field :item_quantity %><%= f.submit '更新', class: "btn-sm btn-default"%></td>
@@ -35,7 +36,7 @@
 							<% end %>
 							<td><%= link_to '削除', carts_destroy_path(cart.id), method: :delete, class: "btn-sm btn-danger" %></td>
 						</tr>
-					</tbody>
+					　</tbody>
 					<% end %>
 				</table>
 			</div>
@@ -43,12 +44,17 @@
 		<td><%= link_to '買い物を続ける',root_path, class: "btn-lg btn-info" %></td><br>
 		<div class ="pull-right">
 			<tr>
-				<h1><td>合計金額
-					<%= @cart_total_price.to_i%>円</td></h1>
-				</tr>
-			</div><br>
-			<%= link_to '情報入力に進む', orders_new_path, class: "btn-lg btn-info"  %>
-	</div>
-</body>
-</html>
+				<h1><td>合計金額<%= @cart_total_price.to_i.to_s(:delimited)%>円</td></h1>
+			</tr>
+		</div><br>
+		<%= link_to '情報入力に進む', orders_new_path, class: "btn-lg btn-info"  %>
+	<% else %>
+		<div class = "container">
+			<div class ="col-xs-12">
+				<div class="pull-left">
+					<h1>カートは空です</h1><br>
+					<%= link_to '買い物を続ける',root_path, class: "btn-lg btn-info" %></div>
+	<% end %>
+				</body>
+				</html>
 
