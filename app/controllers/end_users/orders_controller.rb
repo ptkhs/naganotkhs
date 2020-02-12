@@ -69,7 +69,6 @@ class EndUsers::OrdersController < ApplicationController
     end
     @carts = Cart.where(end_user_id: current_end_user.id)
     @carts.each do |cart|
-      binding.pry
       cart.destroy
     end
     redirect_to orders_thanks_path
