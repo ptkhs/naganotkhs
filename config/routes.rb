@@ -78,7 +78,7 @@ devise_for :end_users, controllers: {
   patch'/carts', to: 'carts#update'
   delete'/carts/:id', to: 'carts#destroy', :as => :carts_destroy
   delete'/carts/', to: 'carts#empty', :as => :carts_empty
-  patch '/items/:id', to: 'carts#create', :as => :carts_add
+  post '/items/:id', to: 'carts#create', :as => :carts_add
 
 
 

@@ -1,16 +1,27 @@
-<div class = "item-image">
-	<%= attachment_image_tag @item, :image, :fill, 200, 200, class: "", fallback: ""%>
+
+
+
+<div class ="container">
+	<div class ="row">
+		<div class = "col-xs-4">
+
+	          <%= attachment_image_tag @item, :image, :fill, 300, 200, class: "", fallback: ""%>
+	      </div>
+
+	        <div class ="col-xs-8">
+
+                <h1><td><%= @item.name %></td><br></h1>
+                <p><td><%= @item.discription %></td></p><br>
+                <p class = "item_price"></p>
+                <h1><td>¥</td><td><%= (@price_zeikomi).to_i %></td><td>(税込)</td>
+                <br></h1>
+ <% if end_user_signed_in? %>
+                <%= form_for @cart ,url: carts_add_path do |f| %>
+
+                 <%= f.select :item_quantity, [["1",1],["2",2],["3",3],["4",4],["5",5]]%> 個
+                 <%= f.submit "カートに入れる" %>
+                 <% end %>
+<% end %>
 </div>
-
-<td><%= @item.name %></td><br>
-<td><%= @item.discription %></td><br>
-<td>¥</td><td><%= (@price_zeikomi).to_i %></td><td>(税込)</td>
-<br>
-
-<%= form_for (@item),url: carts_add_path do |f| %>
-
-<% if end_user_signed_in? %>
-<%= f.submit "カートに入れる" %>
-<% end %>
-<% end %>
-
+</div>
+</div>
