@@ -1,0 +1,33 @@
+<div class="containar">
+	<div class="row">
+		<div class="col-xs-3">
+
+<h1>ジャンル検索</h1><br>
+<% @categories.each do |category| %>
+    <tr>
+      <td><h2><%= link_to category.name, end_users_categories_show_path(category) %></h2></td><br>
+    </tr>
+<% end %>
+  		</div>
+
+<div class="col-xs-9">
+<h1>商品一覧</h1>
+<table class="table">
+  <tbody>
+      <% @items.each_slice(3) do |item3| %>
+      <div class="row">
+        <% item3.each do |item| %>
+      <div class="col-xs-3">
+      <td><%= attachment_image_tag item, :image, :fill, 150, 150, class: "", fallback: ""%><br>
+      <%= link_to item.name, items_show_path(item) %><br>
+      <%= item.price.to_s(:delimited) %>円(税抜)</td>
+      </div>
+      <% end %>
+      <tr>
+    </tr>
+  </div>
+  <% end %>
+</tbody>
+</table>
+</div>
+</div>

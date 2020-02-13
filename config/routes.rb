@@ -80,7 +80,7 @@ devise_for :end_users, controllers: {
   delete'/carts/', to: 'carts#empty', :as => :carts_empty
   patch '/items/:id', to: 'carts#create', :as => :carts_add
 
-
+  get '/search', to: 'search#index', :as => :search
 
 
 end
