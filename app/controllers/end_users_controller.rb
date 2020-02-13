@@ -1,4 +1,5 @@
 class EndUsersController < ApplicationController
+	before_action :header_login_check
 	def bye
 		@end_user = current_end_user
 	end
