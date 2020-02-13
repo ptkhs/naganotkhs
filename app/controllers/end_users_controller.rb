@@ -14,6 +14,15 @@ class EndUsersController < ApplicationController
 		@end_user = current_end_user
 	end
 
+	def password
+	end
+
+	def changed
+		end_user = current_end_user
+		end_user.password = params[:password]
+		end_user.password_confirmation = params[:password]
+		end_user.save
+	end
 	def update
 		@end_user = current_end_user
 		if @end_user.update(end_user_params)

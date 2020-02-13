@@ -3,6 +3,7 @@ class Admins::EndUsersController < ApplicationController
 	before_action :authenticate_admin!
 	def index
 		@end_users = EndUser.all
+		@keyword = "一覧"
 	end
 	def edit
 		@end_user = EndUser.find(params[:id])

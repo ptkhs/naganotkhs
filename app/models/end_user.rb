@@ -8,5 +8,8 @@ class EndUser < ApplicationRecord
   has_many :cart_items, through: :carts, source: :item
   has_many :destinations, dependent: :destroy
   has_many :orders, dependent: :destroy
-
+  def self.search(search)
+      return EndUser.all unless search
+      EndUser.where(['lastname LIKE ? OR firstname LIKE ? OR lastname_kana LIKE ? OR firstname_kana LIKE ?', "%#{search}%",  "%#{search}%",  "%#{search}%",  "%#{search}%"])
+   end
 end
