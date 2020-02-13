@@ -63,6 +63,8 @@ Rails.application.routes.draw do
   get '/end_users/edit', to: 'end_users#edit'
   patch '/end_users/edit', to: 'end_users#update'
   put '/end_users/edit', to: 'end_users#update'
+  get '/end_users/password', to: 'end_users#password', :as => :end_users_password
+  get '/end_users/password/changed', to: 'end_users#changed', :as => :end_users_changed
 
   devise_for :admins, controllers: {
   sessions:      'admins/sessions',
