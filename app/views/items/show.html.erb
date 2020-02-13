@@ -1,3 +1,10 @@
+<h1>ジャンル検索</h1><br>
+<% @categories.each do |category| %>
+    <tr>
+      <td><h2><%= link_to category.name, end_users_categories_show_path(category) %></h2></td><br>
+    </tr>
+<% end %>
+
 <div class = "item-image">
 	<%= attachment_image_tag @item, :image, :fill, 200, 200, class: "", fallback: ""%>
 </div>
