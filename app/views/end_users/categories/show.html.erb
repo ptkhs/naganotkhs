@@ -8,17 +8,22 @@
     </tr>
   <% end %>
       </div>
-      <div class ="col-xs-8">
 
+<div class ="col-xs-9">
 <h1><%= @category.name %></h1>
 
 <table class="table">
   <tbody>
-      <% @items.each do |item| %>
-    <tr>
-      <td><%= attachment_image_tag item, :image, :fill, 150, 150, class: "", fallback: ""%><td>
-      <td><%= link_to item.name, items_show_path(item) %></td>
-      <td><%= item.price %></td>
+      <% @items.each_slice(3) do |item3| %>
+      <div class="row">
+      <% item3.each do |item| %>
+      <div class="col-xs-3">
+      <td><%= attachment_image_tag item, :image, :fill, 150, 150, class: "", fallback: ""%><br>
+      <%= link_to item.name, items_show_path(item) %><br>
+      <%= (item.price).to_s(:delimited) %>円(税抜)</td>
+    </div>
+    <% end %>
+      <tr>
     </tr>
   <% end %>
 </tbody>
