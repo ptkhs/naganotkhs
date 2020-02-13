@@ -57,19 +57,26 @@ class EndUsers::OrdersController < ApplicationController
     @order.name = params[:order][:name]
     @order.charge = params[:order][:charge]
     @order.fee = params[:order][:fee]
+    @order.status = params[:order][:status]
+    @buying_items = current_end_user.carts
+    @buying_item_quantity = 0
+    @buying_items.each do |cart|
+        @buying_item_quantity += cart.item_quantity
+        end
+        @order.allquantity = @buying_item_quantity
     @order.save
     @carts = Cart.where(end_user_id: current_end_user.id)
     @carts.each do |cart|
       @order_detail = OrderDetail.new
       @order_detail.item_id = cart.item_id
       @order_detail.order_id = @order.id
+      @order_detail.production_status = 0
       @order_detail.purchase_quantity = cart.item_quantity
       @order_detail.purchase_price = cart.item.price
       @order_detail.save
     end
     @carts = Cart.where(end_user_id: current_end_user.id)
     @carts.each do |cart|
-      binding.pry
       cart.destroy
     end
     redirect_to orders_thanks_path
@@ -77,6 +84,6 @@ class EndUsers::OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:end_user_id, :paymethod, :zipcode, :address, :name, :charge, :status, :fee, :destination, :destselect, :addressint)
+    params.require(:order).permit(:end_user_id, :paymethod, :zipcode, :address, :name, :charge, :status, :fee, :destination, :destselect, :addressint, :allquantity)
   end
 end

@@ -40,15 +40,18 @@
 					</tr>
 				</thead>
 				<tbody>
-					<%  %>
+					<% @order_details.each do |orderdetail| %>
 					<tr>
-						<td><%= @item.name %></td>
-						<td><%=  %></td>
-						<td><%=  %></td>
-						<td><%=  %></td>
-						<td>セレクトボックス</td>
-						<td>更新ボタン</td>
+						<td><%= orderdetail.item.name %></td>
+						<td><%= (((orderdetail.purchase_price)*1.10).to_i).to_s(:delimited) %></td>
+						<td><%= orderdetail.purchase_quantity %></td>
+						<td><%= (((orderdetail.purchase_price*orderdetail.purchase_quantity)*1.10).to_i).to_s(:delimited) %></td>
+						<td><%= form_for @order_detail, url:admins_orders_update_path do |f| %>
+					    <%= f.select :production_status, [['着手不可', 0],['製作待ち',1],['製作中',2],['製作完了',3]] %></td>
+					    <td><%= f.submit "更新" %></td>
+					    <% end %>
 					</tr>
+					<% end %>
 				</tbody>
 			</table>
 		</div>
@@ -56,7 +59,7 @@
 			<table class="table">
 				<tr>
 					<td>商品合計</td>
-					<td>7000円</td>
+					<td><%= @order.charge - @order.fee %></td>
 				</tr>
 				<tr>
 					<td>送料</td>
