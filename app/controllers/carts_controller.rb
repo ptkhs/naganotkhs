@@ -12,7 +12,7 @@ class CartsController < ApplicationController
 		@cart_item = current_end_user.carts.find_by(item_id: params[:id])
 	  if @cart_item.blank?
 		item = Item.find(params[:id])
-		cart_item = Cart.new(item_id:item.id,end_user_id:current_end_user.id,item_quantity:1)
+		cart_item = Cart.new(item_id:item.id,end_user_id:current_end_user.id,item_quantity:params[:cart][:item_quantity])
 		cart_item.save
 		redirect_to carts_path
 	  else

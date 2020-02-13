@@ -39,7 +39,7 @@
 							<td><%= d.name %></td>
 							<td><%= link_to "編集する", destinations_edit_path(d.end_user_id, d), class: "btn btn-info" %>
 								<%= link_to "削除する", destinations_destroy_path(d.end_user_id, d), class: "btn btn-danger", method: :delete %></td></tr>
+								<% end %>
 					</tbody>
 			</table>
-						<% end %>
 		</div>
