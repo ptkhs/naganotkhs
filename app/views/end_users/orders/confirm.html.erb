@@ -1,8 +1,9 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-9">
-            注文情報確認
-                <table>
+            <div class ="container">
+            <h1>注文情報確認</h1>
+                <table class ="table table-bordered">
 	                <thead>
 		               <tr>
                           <th>商品名</th>
@@ -17,37 +18,37 @@
 		              <tr>
                           <td><%= attachment_image_tag cart.item, :image, :fill, 60, 60, format: 'jpeg' %></td>
 			              <td><%= cart.item.name %></td>
-			              <td><%= (cart.item.price * 1.10).to_i.to_s %></td>
+			              <td><%= (cart.item.price * 1.10).to_i.to_s(:delimited) %>円</td>
 			              <td><%= cart.item_quantity %></td>
-			              <td><%= (cart.item.price * cart.item_quantity * 1.10).to_i.to_s %></td>
+			              <td><%= (cart.item.price * cart.item_quantity * 1.10).to_i.to_s (:delimited)%>円</td>
 		              </tr>
                         <% end %>
 	                </tbody>
                 </table>
         </div>
-        <div class="col-xs-3">
-        	<table>
+        <div class="col-xs-10">
+        	<table class = "table table bordered">
         		<tr>
         			<td>送料</td>
-        			<td><%= @pre_order.fee %></td>
+        			<td><%= @pre_order.fee %>円</td>
         		</tr>
         		<tr>
         			<td>商品合計</td>
-        			<td><%= @buying_item_price.to_i.to_s %></td>
+        			<td><%= @buying_item_price.to_i.to_s(:delimited) %>円</td>
         		</tr>
         		<tr>
         			<td>請求金額</td>
-        			<td><%= @total_price.to_i.to_s %></td>
+        			<td><%= @total_price.to_i.to_s(:delimited) %>円</td>
         		</tr>
         	</table>
-        </div>
-    </div>
-    <div class="row">
+
     	<h2>支払い方法</h2>
         <%= @pre_order.paymethod %>
     	<h2>お届け先</h2><br>
     	<%= @pre_order.zipcode + @pre_order.address %><br>
         <%= @pre_order.name %><br>
-    	<%= link_to "注文を確定する", orders_send_path(@pre_order, params: { order: { end_user_id: @pre_order.end_user_id , paymethod: @pre_order.paymethod, zipcode: @pre_order.zipcode, address: @pre_order.address, name: @pre_order.name, charge: @pre_order.charge, fee: @pre_order.fee } }), method: :post %>
+    	<%= link_to "注文を確定する", orders_send_path(@pre_order, params: { order: { end_user_id: @pre_order.end_user_id , paymethod: @pre_order.paymethod, zipcode: @pre_order.zipcode, address: @pre_order.address, name: @pre_order.name, charge: @pre_order.charge, fee: @pre_order.fee } }), method: :post , class: "btn btn-info"%>
+    </div>
+     </div>
     </div>
 </div>
