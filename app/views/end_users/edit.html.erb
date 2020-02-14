@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-3">
-            <td><%= link_to "退会する", end_users_edit_path %></td>
+            <td><%= link_to "退会する", end_users_bye_path , class: "btn btn-danger" %></td>
 <%= form_for @end_user, url: end_users_edit_path do |f| %>
     <h2>User info</h2>
     <Label>姓</Label>
