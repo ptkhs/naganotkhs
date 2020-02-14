@@ -24,6 +24,10 @@ Rails.application.routes.draw do
   end
 
   namespace :admins do
+    patch 'orderdetail/:id', to: "orders#detailup", :as => :detail_update
+  end
+
+  namespace :admins do
     get 'items/', to: 'items#index'
     get 'items/new', to: 'items#new', :as => :item_new_path
     get 'items/:id', to: 'items#show', :as => :item_show_path

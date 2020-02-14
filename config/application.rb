@@ -16,6 +16,7 @@ module Naganotkhs
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
     config.action_view.automatically_disable_submit_tag = false
+    config.time_zone = 'Tokyo'
 
 
 

@@ -1,6 +1,11 @@
+  <h2>注文一覧画面</h2>
 <div class="container">
-<h2>注文一覧画面</h2>
-  <table>
+  <% if flash[:notice] %>
+  <%= flash[:notice] %>
+  <% end %>
+  <div class="row">
+    <div class="col-xs-12">
+  <table class="table table-condensed">
   	<thead>
   	<tr>
   		<th>購入日時</th>
@@ -13,15 +18,22 @@
   		<% @orders.each do |order| %>
     <tr>
   		<td><%= link_to admins_orders_show_path(order) do %>
-        <%= order.created_at %></td>
-        <% end %>
-  		<td><%= order.name %></td>
+        <%= order.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+  		<td><%= order.end_user.lastname + order.end_user.firstname %></td>
   		<td><%= order.allquantity %></td>
-  		<td><%= order.status %></td>
-  		<% end %>
+  		<td><% case order.status 
+           when 0 %>入金待ち
+        <% when 1 %>入金確認
+        <% when 2 %>製作中
+        <% when 3 %>発送準備中
+        <% when 4 %>発送済</td>
+  		    <% end %>
+          <% end %>
+      <% end %>
     </tr>
   	</tbody>
   </table>
   <%= paginate @orders %>
 </div>
-
+</div>
+</div>

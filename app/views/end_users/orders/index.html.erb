@@ -1,6 +1,6 @@
 <div class="container">
 <h2>注文履歴一覧</h2>
-  <table>
+  <table class="table table-bordered">
   	<thead>
   		<tr>
   			<th>注文日</th>
@@ -14,15 +14,22 @@
   	<tbody>
       <% @orders.each do |order| %>
     <tr>
-  		<td><%= order.created_at %></td>
-  		<td><%= order.zipcode + order.address + order.name %></td>
+  		<td><%= order.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+  		<td><%= order.zipcode + order.address %><br>
+          <%= order.name %></td>
       <td>
   		<% order.order_details.each do |od| %>
-        <%= od.item.name %>
-          <% end %>
+        <%= od.item.name %><br>
+      <% end %>
         </td>
-  		<td><%= order.charge %></td>
-  		<td><%= order.status %></td>
+  		<td><%= (order.charge).to_i.to_s(:delimited) %>円</td>
+  		<td><% case order.status 
+           when 0 %>入金待ち
+        <% when 1 %>入金確認
+        <% when 2 %>製作中
+        <% when 3 %>発送準備中
+        <% when 4 %>発送済</td>
+        <% end %>
   		<td><%= link_to "表示する", orders_show_path(order), class: "btn btn-primary" %></td>
     </tr>
       <% end %>
