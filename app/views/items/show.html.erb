@@ -1,30 +1,26 @@
-<h1>ジャンル検索</h1><br>
-<% @categories.each do |category| %>
-    <tr>
-      <td><h2><%= link_to category.name, end_users_categories_show_path(category) %></h2></td><br>
-    </tr>
-<% end %>
 
-<div class = "item-image">
-	<%= attachment_image_tag @item, :image, :fill, 200, 200, class: "", fallback: ""%>
+    <div class ="row">
+        <div class = "col-xs-2">
+
+<h2>ジャンル検索</h2><br>
+<% @categories.each do |category| %>
+<table class="table table table-hove">
+    <tr class="warning">
+      <td><h4><%= link_to category.name, end_users_categories_show_path(category) %></h4></td>
+    </tr>
+</table>
+<% end %>
 </div>
 
 
-
-<div class ="container">
-	<div class ="row">
-		<div class = "col-xs-4">
+<div class = "col-xs-10">
 
 	          <%= attachment_image_tag @item, :image, :fill, 300, 200, class: "", fallback: ""%>
-	      </div>
-
-	        <div class ="col-xs-8">
-
-                <h1><td><%= @item.name %></td><br></h1>
+                <h1><td><%= @item.name %></td><br></h1><br>
                 <p><td><%= @item.discription %></td></p><br>
                 <p class = "item_price"></p>
-                <h1><td>¥</td><td><%= (@price_zeikomi).to_i %></td><td>(税込)</td>
-                <br></h1>
+                <h1><td>¥</td><td><%= (@price_zeikomi).to_i.to_s(:delimited) %></td><td>(税込)</td>
+                <br></h1><br>
  <% if end_user_signed_in? %>
                 <%= form_for @cart ,url: carts_add_path do |f| %>
 
