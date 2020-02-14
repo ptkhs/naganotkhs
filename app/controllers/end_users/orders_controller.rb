@@ -42,9 +42,8 @@ class EndUsers::OrdersController < ApplicationController
         render :confirm
     end
 
-
   def index
-    @orders = Order.page(params[:page]).reverse_order
+    @orders = current_end_user.orders.page(params[:page]).reverse_order
     @order_details = OrderDetail.all
   end
 

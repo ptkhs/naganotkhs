@@ -1,4 +1,7 @@
 <div class="container">
+	<% if flash[:notice] %>
+	<%= flash[:notice] %>
+	<% end %>
 	<div class="row">
 		<div class="col-xs-12">
 			<h2>注文詳細画面</h2>
@@ -9,7 +12,7 @@
 				</tr>
 				<tr>
 					<td>配送先</td>
-					<td><%= @order.zipcode + @order.address %>
+					<td><%= @order.zipcode + @order.address %><br>
 						<%= @order.name %>
 					</td>
 				</tr>
@@ -21,15 +24,15 @@
 					<td>注文ステータス</td>
 					<%= form_for @order, url:admins_orders_update_path do |f| %>
 					<td><%= f.select :status, [['入金待ち', 0],['入金確認',1],['製作中',2],['発送準備中',3],['発送済み',4]] %>
-					    <%= f.submit "更新" %></td>
+					    <%= f.submit "更新", class: "btn btn-primary" %></td>
 					<% end %>
 				</tr>
 			</table>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-xs-8">
-			<table>
+		<div class="col-xs-8" >
+			<table class="table">
 				<thead>
 					<tr>
 						<th>商品名</th>
@@ -40,34 +43,36 @@
 					</tr>
 				</thead>
 				<tbody>
-					<% @order_details.each do |orderdetail| %>
+					<% @order_detail.each do |orderdetail| %>
+					<%= form_for orderdetail, url: admins_detail_update_path(orderdetail) do |f| %>
 					<tr>
 						<td><%= orderdetail.item.name %></td>
 						<td><%= (((orderdetail.purchase_price)*1.10).to_i).to_s(:delimited) %></td>
 						<td><%= orderdetail.purchase_quantity %></td>
 						<td><%= (((orderdetail.purchase_price*orderdetail.purchase_quantity)*1.10).to_i).to_s(:delimited) %></td>
-						<td><%= form_for @order_detail, url:admins_orders_update_path do |f| %>
-					    <%= f.select :production_status, [['着手不可', 0],['製作待ち',1],['製作中',2],['製作完了',3]] %></td>
-					    <td><%= f.submit "更新" %></td>
+						<td><%= f.select :production_status, {'着手不可': 0,'製作待ち': 1,'製作中': 2,'製作完了': 3} %>
+					        <%= f.submit "更新", class: "btn btn-primary" %></td>
+					    <% end %>
 					    <% end %>
 					</tr>
-					<% end %>
 				</tbody>
 			</table>
 		</div>
-		<div class="col-xs-4">
+		<div class="col-xs-4" >
 			<table class="table">
 				<tr>
 					<td>商品合計</td>
-					<td><%= @order.charge - @order.fee %></td>
+					<td><%= (@order.charge - @order.fee).to_i.to_s(:delimited) %>円</td>
 				</tr>
 				<tr>
 					<td>送料</td>
-					<td><%= @order.fee %></td>
+					<td><%= @order.fee %>円</td>
+				</tr>
 					<td>請求金額合計</td>
-					<td><%= @order.charge %></td>
+					<td><%= (@order.charge).to_i.to_s(:delimited) %>円</td>
 				</tr>
 			</table>
 		</div>
+	</div>
 	</div>
 </div>
