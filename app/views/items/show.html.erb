@@ -21,12 +21,24 @@
                 <p class = "item_price"></p>
                 <h1><td>¥</td><td><%= (@price_zeikomi).to_i.to_s(:delimited) %></td><td>(税込)</td>
                 <br></h1><br>
- <% if end_user_signed_in? %>
+ <% if end_user_signed_in? && @item.status == true %>
+
                 <%= form_for @cart ,url: carts_add_path do |f| %>
 
                  <%= f.select :item_quantity, [["1",1],["2",2],["3",3],["4",4],["5",5]]%> 個
                  <%= f.submit "カートに入れる" %>
                  <% end %>
+
+<% elsif end_user_signed_in? && @item.status == false %>
+<h1>現在販売停止中です</h1>
+
+<% else %>
+<h1>ログインして下さい。</h1>
+
+
+
+
+
 <% end %>
 </div>
 </div>
