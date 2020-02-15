@@ -2,23 +2,23 @@
 	<h2>配送先新規登録</h2>
 	<div class = "row">
 		<div class = "col-xs-9">
+			<%= form_for @destination, url: destinations_index_path, remote: true do |f|%>
 			<table class = "table table-bordered">
-				<%= form_for @destination, url: destinations_index_path do |f|%>
 				<tr>
 					<th>郵便番号</th>
-					<td><%= f.text_field :zipcode %></td>
+					<td><%= f.text_field :zipcode, class:'b' %></td>
 				</tr>
 				<tr>
 					<th>住所</th>
-					<td><%= f.text_field :address %></td>
+					<td><%= f.text_field :address, class:'b' %></td>
 				</tr>
 				<tr>
 					<th>宛名</th>
-					<td><%= f.text_field :name %></td>
+					<td><%= f.text_field :name, class:'b' %></td>
 				</tr>
+				<div><%= f.submit "登録する", class: "btn btn-info c" %></div>
 			</table>
 		</div>
-		<div><%= f.submit "登録する", class: "btn btn-info" %></div>
 		<% end %>
 		<div class = "col-xs-9">
 			<h2>配送先一覧</h2>
@@ -31,7 +31,7 @@
 							<th></th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody class="destination_item">
 						<% @destinations.each  do |d| %>
 						<tr>
 							<td><%= d.zipcode %></td>

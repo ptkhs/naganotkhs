@@ -19,16 +19,26 @@ class EndUsers::DestinationsController < ApplicationController
 
   def destroy
   	@destination = Destination.find(params[:id])
-	@destination.destroy
-	redirect_to destinations_index_path
+	respond_to do |format|
+      if @destination.destroy
+        format.html { redirect_to :destinations_index }
+        format.json { head :no_content }
+      else
+        format.html{ redirect_to :destinations_index }
+      end
+    end
   end
 
   def create
   	@destination = Destination.new(destination_params)
   	@destination.end_user_id = current_end_user.id
     @destination.fulladdress = @destination.zipcode + @destination.address + @destination.name
-  	@destination.save
-  	redirect_to destinations_index_path
+      if @destination.save
+        respond_to do |format|
+          format.html { redirect_to :destinations_index }
+          format.json
+        end
+      end
   end
 
   private
