@@ -22,7 +22,7 @@
                 <h1><td>¥</td><td><%= (@price_zeikomi).to_i.to_s(:delimited) %></td><td>(税込)</td>
                 <br></h1><br>
  <% if end_user_signed_in? %>
-                <%= form_for @cart ,url: carts_add_path do |f| %>
+                <%= form_for @cart ,class:'new_item' ,url: carts_add_path do |f| %>
 
                  <%= f.select :item_quantity, [["1",1],["2",2],["3",3],["4",4],["5",5]]%> 個
                  <%= f.submit "カートに入れる" %>

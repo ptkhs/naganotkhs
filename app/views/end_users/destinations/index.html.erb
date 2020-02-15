@@ -3,7 +3,7 @@
 	<div class = "row">
 		<div class = "col-xs-9">
 			<table class = "table table-bordered">
-				<%= form_for @destination, url: destinations_index_path(id: @destination.id) do |f|%>
+				<%= form_for @destination, url: destinations_index_path do |f|%>
 				<tr>
 					<th>郵便番号</th>
 					<td><%= f.text_field :zipcode %></td>
