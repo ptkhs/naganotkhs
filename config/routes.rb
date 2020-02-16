@@ -48,8 +48,7 @@ Rails.application.routes.draw do
 
   scope module: :end_users do
     get 'orders/new', to: 'orders#new', :as => :orders_new
-    post 'orders/new'
-    post 'orders/', to: 'orders#create', :as => :orders_create
+    post 'orders/new', to: 'orders#create', :as => :orders_create
     get 'orders/confirm', to: 'orders#confirm', :as => :orders_confirm
     post 'orders/confirm', to: 'orders#sending', :as => :orders_send
     delete 'orders/:id', to: 'orders#destroy', :as => :orders_destroy
