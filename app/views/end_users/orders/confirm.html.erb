@@ -14,7 +14,7 @@
 	                <tbody>
                         <% @buying_items.each do |cart| %>
 		              <tr>
-                          <td><%= attachment_image_tag cart.item, :image, :fill, 60, 60, format: 'jpeg' %></td>
+                          <td><%= attachment_image_tag cart.item, :image, :fill, 60, 60, format: 'jpeg',fallback:"noimage.jpg",size:'60x60'%></td>
 			              <td><%= cart.item.name %></td>
 			              <td><%= (cart.item.price * 1.10).to_i.to_s(:delimited) %></td>
 			              <td><%= cart.item_quantity %></td>

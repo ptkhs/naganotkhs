@@ -1,8 +1,8 @@
+<%= form_for @item, url: admins_item_update_path(@item) do |f| %>
 <div class="container">
-    <%= form_for @item, url: admins_item_update_path(@item) do |f| %>
         <h2>商品編集画面</h2>
         <div class="item-image">
-            <%= attachment_image_tag @item, :image, :fill, 200, 200, class: "img-circle pull-left profile-thumb", fallback: ""%>
+            <%= attachment_image_tag @item, :image, :fill, 200, 200, class: "img-circle pull-left profile-thumb", fallback: "noimage.jpg",size:'200x200'%>
         </div>
         <div class="form-group has-icon">
         <%= f.attachment_field :image, placeholder: "プロフィール画像", class: "user-edit-form" %>
@@ -28,6 +28,6 @@
     <option value="0">販売停止中</option></select>
       </div>
       </div>
-        <%= f.submit "変更を保存", class:"btn btn-lg btn-block btn-base-1 mt-20" %>
-    <% end %>
 </div>
+<%= f.submit "変更を保存", class:"btn btn-lg btn-block btn-base-1 mt-20" %>
+<% end %>
