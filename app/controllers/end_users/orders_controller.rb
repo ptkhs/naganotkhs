@@ -6,6 +6,7 @@ class EndUsers::OrdersController < ApplicationController
 
   def new
     @pre_order = Order.new
+
   end
 
   def show
@@ -18,17 +19,6 @@ class EndUsers::OrdersController < ApplicationController
 
   def create
     @pre_order = Order.new(order_params)
-    case @pre_order.destselect
-    when 1
-      @pre_order.address = current_end_user.address
-      @pre_order.zipcode = current_end_user.zipcode
-      @pre_order.name = current_end_user.lastname + current_end_user.firstname
-
-    when 2
-      @pre_order.address = Destination.find(@pre_order.addressint).address
-      @pre_order.zipcode = Destination.find(@pre_order.addressint).zipcode
-      @pre_order.name = Destination.find(@pre_order.addressint).name
-    end
     @buying_items = current_end_user.carts
     @pre_order.end_user_id = current_end_user.id
     @pre_order.fee = 800
@@ -39,8 +29,25 @@ class EndUsers::OrdersController < ApplicationController
     @total_price = @pre_order.fee + @buying_item_price
     @pre_order.charge = @total_price
     @pre_order.status = 0
-        render :confirm
-    end
+    case @pre_order.destselect
+      when 1
+        @pre_order.address = current_end_user.address
+        @pre_order.zipcode = current_end_user.zipcode
+        @pre_order.name = current_end_user.lastname + current_end_user.firstname
+      when 2
+        @pre_order.address = Destination.find(@pre_order.addressint).address
+        @pre_order.zipcode = Destination.find(@pre_order.addressint).zipcode
+        @pre_order.name = Destination.find(@pre_order.addressint).name
+      when 3
+        if params[:order][:zipcode].blank? || params[:order][:address].blank? || params[:order][:name].blank?
+           flash[:alert] = "送信先の郵便番号・住所・宛名をすべて入力してください。"
+           render :new and return
+        else
+          render :confirm and return
+        end
+      end
+    render :confirm
+  end
 
   def index
     @orders = current_end_user.orders.page(params[:page]).reverse_order

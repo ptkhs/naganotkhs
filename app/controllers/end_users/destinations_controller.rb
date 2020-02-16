@@ -9,8 +9,11 @@ class EndUsers::DestinationsController < ApplicationController
 
   def update
   	@destination = Destination.find(params[:id])
-  	@destination.update(destination_params)
-  	redirect_to destinations_index_path
+  	  if @destination.update(destination_params)
+  	     redirect_to destinations_index_path
+      else
+         render :edit
+      end
   end
 
   def edit
@@ -31,14 +34,23 @@ class EndUsers::DestinationsController < ApplicationController
 
   def create
   	@destination = Destination.new(destination_params)
-  	@destination.end_user_id = current_end_user.id
+  	@end_user = current_end_user
     @destination.fulladdress = @destination.zipcode + @destination.address + @destination.name
+<<<<<<< HEAD
       if @destination.save
         respond_to do |format|
           format.html { redirect_to :destinations_index }
           format.json
         end
       end
+=======
+    @destinations = @end_user.destinations.page(params[:page])
+  	if @destination.save
+  	  redirect_to destinations_index_path
+    else
+      render :index
+    end
+>>>>>>> ed34447825e65f75ebffddfd8875ff87bd978026
   end
 
   private
