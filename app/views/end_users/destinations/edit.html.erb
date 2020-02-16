@@ -1,10 +1,28 @@
+<div class="container">
+	<% if @destination.errors.any? %>
+	<%= @destination.errors.count %>errors prohibited this obj from being saved:
+	<ul>
+		<% @destination.errors.full_messages.each do |msg| %>
+		<li><%= msg %></li>
+		<% end %>
+	</ul>
+	<% end %>
 <h2>配送先編集</h2>
-	<%= form_for @destination, url: destinations_index_path(id: @destination.id) do |f| %>
-	郵便番号
-	<%= f.text_field :zipcode %>
-	住所
-	<%= f.text_field :address %>
-	宛名
-	<%= f.text_field :name %>
-	<%= f.submit "登録する", class: "btn btn-prymary" %>
+	<table class="table">
+		<%= form_for @destination, url: destinations_index_path(id: @destination.id) do |f| %>
+		<tr>
+			<td class="active">郵便番号</td>
+			<td><%= f.text_field :zipcode %></td>
+		</tr>
+		<tr>
+			<td class="active">住所</td>
+		    <td><%= f.text_field :address %></td>
+		</tr>
+		<tr>
+			<td class="active">宛名</td>
+			<td><%= f.text_field :name %></td>
+		</tr>
+	</table>
+	    <%= f.submit "登録する", class: "btn btn-primary" %>
 	    <% end %>
+</div>

@@ -4,20 +4,20 @@
            <h2>注文情報</h2>
            <table class="table table-bordered">
              <tr>
-                <td>注文日</td>
+                <td class="active">注文日</td>
                 <td><%= @order.created_at.strftime("%Y-%m-%d %H:%M") %></td>
              </tr>
              <tr>
-                <td>配送先</td>
+                <td class="active">配送先</td>
                 <td><%= @order.zipcode + @order.address %><br>
                     <%= @order.name %></td>
              </tr>
              <tr>
-                <td>支払方法</td>
+                <td class="active">支払方法</td>
                 <td><%= @order.paymethod %></td>
              </tr>
              <tr>
-                <td>ステータス</td>
+                <td class="active">ステータス</td>
                 <td><% case @order.status 
                        when 0 %>入金待ち
                     <% when 1 %>入金確認
@@ -32,15 +32,15 @@
         	<h2>請求情報</h2>
         	<table class="table table-bordered">
         		<tr>
-        			<td>商品合計</td>
+        			<td class="active">商品合計</td>
         			<td><%= (@order.charge - @order.fee).to_i.to_s(:delimited) %>円</td>
         		</tr>
         		<tr>
-        			<td>配送料</td>
+        			<td class="active">配送料</td>
         			<td><%= @order.fee %>円</td>
         		</tr>
         		<tr>
-        			<td>ご請求額</td>
+        			<td class="active">ご請求額</td>
         			<td><%= (@order.charge).to_i.to_s(:delimited) %>円</td>
         		</tr>
         	</table>
@@ -51,7 +51,7 @@
     		<h2>注文内容</h2>
     		<table class="table table-bordered">
     		  <thead>
-        		<tr>
+        		<tr class="active">
         			<th>商品</th>
         			<th>単価（税込）</th>
         			<th>個数</th>
