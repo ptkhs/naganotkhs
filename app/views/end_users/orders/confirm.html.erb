@@ -48,6 +48,6 @@
     	<h2>お届け先</h2><br>
     	<%= @pre_order.zipcode + @pre_order.address %><br>
         <%= @pre_order.name %><br><div>　</div>
-    	<%= link_to "注文を確定する", orders_send_path(@pre_order, params: { order: { end_user_id: @pre_order.end_user_id , paymethod: @pre_order.paymethod, zipcode: @pre_order.zipcode, address: @pre_order.address, name: @pre_order.name, charge: @pre_order.charge, fee: @pre_order.fee } }), method: :post , class:"btn btn-info"%>
+    	<%= link_to "注文を確定する", orders_send_path(@pre_order, params: { order: { end_user_id: @pre_order.end_user_id , paymethod: @pre_order.paymethod, zipcode: @pre_order.zipcode, address: @pre_order.address, name: @pre_order.name, charge: @pre_order.charge, fee: @pre_order.fee, status: @pre_order.status, destselect: @pre_order.destselect } }), method: :post , class:"btn btn-info"%>
     </div>
 </div>
