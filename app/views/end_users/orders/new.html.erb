@@ -1,6 +1,4 @@
-  <% if flash[:alert] %>
-  <%= flash[:alert] %>
-  <% end %>
+
 <div class="container">
 購入情報入力
 
@@ -39,6 +37,6 @@
         <td>宛名<%= f.text_field :name %></td>
       </tr>
     </table>
-      <%= f.submit '確認画面へ進む', class: "btn btn-primary" %>
+      <%= f.submit '確認画面へ進む', class: "btn btn-info" %>
     <% end %>
 </div>

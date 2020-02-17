@@ -38,7 +38,7 @@ class Admins::ItemsController < ApplicationController
       @item.sort_item = 0
       if @item.save
         flash[:notice] = '商品の作成に成功しました。'
-        redirect_to admins_item_show_path_path(@item)
+        redirect_to admins_items_path
       else
         @item = Item.new
         @categories = Category.all
