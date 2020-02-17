@@ -11,8 +11,10 @@ class Admins::EndUsersController < ApplicationController
 	def update
 		@end_user = EndUser.find(params[:id])
 		if @end_user.update(end_user_params)
+			flash[:notice] = 'エンドユーザーの編集に成功しました。'
     		redirect_to admins_end_users_show_path(@end_user)
     	else
+    		flash[:notice] = 'エンドユーザーの編集に失敗しました。'
     		render :edit
     	end
 	end

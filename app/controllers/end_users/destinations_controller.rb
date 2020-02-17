@@ -10,8 +10,10 @@ class EndUsers::DestinationsController < ApplicationController
   def update
   	@destination = Destination.find(params[:id])
   	  if @destination.update(destination_params)
+         flash[:notice] = '配送先の更新に成功しました'
   	     redirect_to destinations_index_path
       else
+         flash[:notice] = '配送先の更新に失敗しました'
          render :edit
       end
   end
@@ -22,8 +24,10 @@ class EndUsers::DestinationsController < ApplicationController
 
   def destroy
   	@destination = Destination.find(params[:id])
-	@destination.destroy
-	redirect_to destinations_index_path
+	    if @destination.destroy
+        flash[:notice] = '配送先の削除に成功しました'
+      end
+	    redirect_to destinations_index_path
   end
 
   def create
@@ -31,12 +35,13 @@ class EndUsers::DestinationsController < ApplicationController
   	@end_user = current_end_user
     @destination.fulladdress = @destination.zipcode + @destination.address + @destination.name
   	@destination.end_user_id = current_end_user.id
-    if
-      @destination.save
+    if @destination.save
+      flash[:notice] = '配送先の追加に成功しました'
   	  redirect_to destinations_index_path
     else
       @destinations = @end_user.destinations.page(params[:page])
       @destination = Destination.new
+      flash[:notice] = '配送先の追加に失敗しました'
       render :index
     end
   end
