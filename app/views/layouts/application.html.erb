@@ -22,13 +22,11 @@
 
 <ul class="nav navbar-nav navbar-right">
  <li>
-   <form class="navbar-form">
     <% if end_user_signed_in? %>
-     <%= form_tag(search_path,:method => 'get') do %>
+     <%= form_tag(search_path,:method => 'get',class:'navbar-form') do %>
      <%= text_field_tag :search, nil, :placeholder => '商品名で検索できます' %>
      <%= hidden_field_tag :target, 'item' %>
      <%= submit_tag 'Search', :name => nil %>
-   </form>
 <% end %>
 
 </li>
@@ -143,6 +141,7 @@
 
    <% end %>
   <% end %>
+  <%= render 'layouts/flash_messages' %>
 <%= yield %>
 
 </body>

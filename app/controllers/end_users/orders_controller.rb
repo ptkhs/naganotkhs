@@ -82,12 +82,14 @@ class EndUsers::OrdersController < ApplicationController
     @order.save
     @carts = Cart.where(end_user_id: current_end_user.id)
     @carts.each do |cart|
+      cart.item.sort_item += 1
       @order_detail = OrderDetail.new
       @order_detail.item_id = cart.item_id
       @order_detail.order_id = @order.id
       @order_detail.production_status = 0
       @order_detail.purchase_quantity = cart.item_quantity
       @order_detail.purchase_price = cart.item.price
+      cart.item.save
       @order_detail.save
     end
     @carts = Cart.where(end_user_id: current_end_user.id)

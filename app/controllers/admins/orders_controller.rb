@@ -46,8 +46,8 @@ class Admins::OrdersController < ApplicationController
         end
         end
       end
-      end
-      flash[:notice] = "注文ステータスを更新しました！"
+    else
+      flash[:notice] = "注文ステータスの更新に成功しました。"
       redirect_to admins_orders_show_path(@order)
     end
 
