@@ -34,7 +34,7 @@ class Admins::ItemsController < ApplicationController
   def create
       @item = Item.new(item_params)
       if @item.save
-        redirect_to admins_item_show_path_path(@item)
+        redirect_to admins_items_path
       else
         @item = Item.new
         @categories = Category.all

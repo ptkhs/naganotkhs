@@ -4,7 +4,7 @@
             <h1>注文情報確認</h1>
                 <table class= "table table-bordered">
 	                <thead>
-		               <tr>
+		               <tr class="active">
                           <th colspan="2">商品名</th>
 			              <th>単価(税込)</th>
 			              <th>数量</th>
@@ -28,15 +28,15 @@
             <h1>請求金額</h1>
         	<table class ="table table-bordered">
         		<tr>
-        			<td>送料</td>
+        			<td class="active">送料</td>
         			<td><%= @pre_order.fee %></td>
         		</tr>
         		<tr>
-        			<td>商品合計</td>
+        			<td class="active">商品合計</td>
         			<td><%= @buying_item_price.to_i.to_s(:delimited) %></td>
         		</tr>
         		<tr>
-        			<td>請求金額</td>
+        			<td class="active">請求金額</td>
         			<td><%= @total_price.to_i.to_s (:delimited)%></td>
         		</tr>
         	</table>

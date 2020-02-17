@@ -31,8 +31,7 @@ class EndUsers::DestinationsController < ApplicationController
   	@end_user = current_end_user
     @destination.fulladdress = @destination.zipcode + @destination.address + @destination.name
   	@destination.end_user_id = current_end_user.id
-    if
-      @destination.save
+    if @destination.save
   	  redirect_to destinations_index_path
     else
       @destinations = @end_user.destinations.page(params[:page])

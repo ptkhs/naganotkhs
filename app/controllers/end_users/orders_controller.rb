@@ -39,7 +39,7 @@ class EndUsers::OrdersController < ApplicationController
         @pre_order.zipcode = Destination.find(@pre_order.addressint).zipcode
         @pre_order.name = Destination.find(@pre_order.addressint).name
       when 3
-        if params[:order][:zipcode].blank? || params[:order][:address].blank? || params[:order][:name].blank? || !(params[:order][:zipcode].length == 7) || !(/\A[0-9]+\z/ === params[:order][:zipcode])
+        if params[:order][:zipcode].blank? || params[:order][:address].blank? || params[:order][:name].blank? || !(params[:order][:zipcode].length == 7) || !(/\A[0-9]+\z/ === params[:order][:zipcode]) || params[:order][:address].length < 7
            flash[:alert] = "送信先の郵便番号・住所・宛名をすべて入力してください。"
            render :new and return
         else
@@ -70,7 +70,6 @@ class EndUsers::OrdersController < ApplicationController
         @buying_item_quantity += cart.item_quantity
         end
         @order.allquantity = @buying_item_quantity
-    binding.pry
     if params[:order][:destselect] == "3"
       @destination = Destination.new
       @destination.name = @order.name
@@ -78,7 +77,6 @@ class EndUsers::OrdersController < ApplicationController
       @destination.address = @order.address
       @destination.end_user_id = current_end_user.id
       @destination.fulladdress = @order.zipcode + @order.address + @order.name
-      binding.pry
       @destination.save
     end
     @order.save
