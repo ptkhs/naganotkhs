@@ -15,7 +15,7 @@
     <div class="navbar-header">
       <li>
         <%= link_to root_path do %>
-        <%= image_tag'logo.jpg'%>
+        <%= image_tag'logo.png'%>
         <% end %>
       </li>
     </div>
@@ -109,7 +109,7 @@
   </nav>
 
   <% else %>
-<li><%= form_tag(search_path,:method => 'get') do %>
+<li><%= form_tag(search_path, method: :get, data: { remote: false }) do %>
   <%= text_field_tag :search, nil, :placeholder => '商品名で検索できます' %>
   <%= hidden_field_tag :target, 'item' %>
   <%= submit_tag 'Search', :name => nil %>

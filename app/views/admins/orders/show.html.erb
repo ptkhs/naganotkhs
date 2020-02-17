@@ -25,9 +25,9 @@
 				</tr>
 				<tr>
 					<td><strong>注文ステータス</strong></td>
-					<%= form_for @order, url:admins_orders_update_path do |f| %>
-					<td><%= f.select :status, [['入金待ち', 0],['入金確認',1],['製作中',2],['発送準備中',3],['発送済み',4]] %>
-					    <%= f.submit "更新", class: "btn btn-primary" %></td>
+					<td><%= form_for @order, url:admins_orders_update_path do |f| %>
+					<%= f.select :status, [['入金待ち', 0],['入金確認',1],['製作中',2],['発送準備中',3],['発送済み',4]] %>
+					    <%= f.submit "更新", class: "btn btn-primary" %></td><td></td>
 					<% end %>
 				</tr>
 			</table>
@@ -52,9 +52,9 @@
 						<td><%= orderdetail.item.name %></td>
 						<td><%= (((orderdetail.purchase_price)*1.10).to_i).to_s(:delimited) %></td>
 						<td><%= orderdetail.purchase_quantity %></td>
-						<td><%= (((orderdetail.purchase_price*orderdetail.purchase_quantity)*1.10).to_i).to_s(:delimited) %></td>
+						<td><%= (((orderdetail.purchase_price*orderdetail.purchase_quantity)*1.10).to_i).to_s(:delimited) %>
 						<td><%= f.select :production_status, {'着手不可': 0,'製作待ち': 1,'製作中': 2,'製作完了': 3} %>
-					        <%= f.submit "更新", class: "btn btn-primary" %></td>
+					        <%= f.submit "更新", class: "btn btn-primary" %></td><td></td>
 					    <% end %>
 					    <% end %>
 					</tr>

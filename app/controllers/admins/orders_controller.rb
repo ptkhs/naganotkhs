@@ -13,6 +13,7 @@ class Admins::OrdersController < ApplicationController
   end
   def detailup
     @orderdetail = OrderDetail.find(params[:id])
+
     if @orderdetail.update(order_details_params)
       flash[:notice] = "製作ステータスを更新しました！"
       redirect_to admins_orders_show_path(@orderdetail.order_id)

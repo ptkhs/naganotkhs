@@ -17,8 +17,13 @@ class Admins::ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
-    @item.update(item_params)
-    redirect_to admins_item_show_path_path(@item)
+    if @item.update(item_params)
+      redirect_to admins_item_show_path_path(@item)
+    else
+      @item = Item.find(params[:id])
+      @categories = Category.all
+      render :edit
+    end
   end
 
   def new
@@ -28,8 +33,13 @@ class Admins::ItemsController < ApplicationController
 
   def create
       @item = Item.new(item_params)
-      @item.save
-      redirect_to admins_item_show_path_path(@item)
+      if @item.save
+        redirect_to admins_item_show_path_path(@item)
+      else
+        @item = Item.new
+        @categories = Category.all
+        render :new
+      end
   end
 
   def item_params
