@@ -3,8 +3,8 @@
   <div class="row">
     <div class="col-xs-10">
       <h3>登録情報</h3>
-      <%= link_to "編集する", end_users_edit_path , class: "btn btn-primary"%>
-      <%= link_to "パスワードを変更する", '/end_users/password', class: "btn btn-primary"%><br><div>　　</div>
+      <%= link_to "編集する", end_users_edit_path , class: "btn btn-info"%>
+      <%= link_to "パスワードを変更する", '/end_users/password', class: "btn btn-info"%><br><div>　　</div>
 <table class = "table table-bordered">
  <tbody>
     <tr>
@@ -34,13 +34,13 @@
 </table>
 <table>
       <tr>
-        <td>配送先　　<%= link_to "一覧を見る", "/end_users_id/destinations", class: "btn btn-primary"%></td>
+        <td>配送先　　<%= link_to "一覧を見る", "/end_users_id/destinations", class: "btn btn-info"%></td>
       </tr>
       <tr>
         <td>　　</td>
       </tr>
       <tr>
-        <td>注文履歴　<%= link_to "一覧を見る", orders_index_path, class: "btn btn-primary"%></td>
+        <td>注文履歴　<%= link_to "一覧を見る", orders_index_path, class: "btn btn-info"%></td>
       </tr>
 </table>
 </div>
