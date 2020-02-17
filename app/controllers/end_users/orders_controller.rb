@@ -70,7 +70,6 @@ class EndUsers::OrdersController < ApplicationController
         @buying_item_quantity += cart.item_quantity
         end
         @order.allquantity = @buying_item_quantity
-    binding.pry
     if params[:order][:destselect] == "3"
       @destination = Destination.new
       @destination.name = @order.name
