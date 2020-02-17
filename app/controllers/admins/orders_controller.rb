@@ -11,21 +11,45 @@ class Admins::OrdersController < ApplicationController
   	@orders = Order.page(params[:page]).reverse_order
     @order_details = OrderDetail.all
   end
+
   def detailup
     @orderdetail = OrderDetail.find(params[:id])
-
+    @order = @orderdetail.order
     if @orderdetail.update(order_details_params)
+      case @orderdetail.production_status
+      when 2
+        if @order.status == 1
+          @order.status = 2
+        end
+      when 3
+        @production_status = OrderDetail.where(order_id: @order.id).where.not(production_status: 3)
+        if @production_status.blank?
+          if @order.status == 2
+            @order.status = 3
+          end
+        end
+      end
+      @order.save
       flash[:notice] = "製作ステータスを更新しました！"
       redirect_to admins_orders_show_path(@orderdetail.order_id)
     end
   end
+
   def update
     @order = Order.find(params[:id])
+    @order_details = OrderDetail.where(order_id: @order.id)
     if @order.update(order_params)
+      if @order.status == 1
+        @order_details.each do |orderdetail|
+        if orderdetail.production_status == 0
+          orderdetail.update(production_status: 1)
+        end
+        end
+      end
+      end
       flash[:notice] = "注文ステータスを更新しました！"
-      redirect_to admins_orders_index_path
+      redirect_to admins_orders_show_path(@order)
     end
-  end
 
   private
 
