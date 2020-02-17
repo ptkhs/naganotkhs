@@ -30,10 +30,13 @@ class EndUsers::DestinationsController < ApplicationController
   	@destination = Destination.new(destination_params)
   	@end_user = current_end_user
     @destination.fulladdress = @destination.zipcode + @destination.address + @destination.name
-    @destinations = @end_user.destinations.page(params[:page])
-  	if @destination.save
+  	@destination.end_user_id = current_end_user.id
+    if
+      @destination.save
   	  redirect_to destinations_index_path
     else
+      @destinations = @end_user.destinations.page(params[:page])
+      @destination = Destination.new
       render :index
     end
   end
