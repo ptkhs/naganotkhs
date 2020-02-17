@@ -12,14 +12,22 @@ end
 
 def update
  @category = Category.find(params[:id])
- @category.update(category_params)
- redirect_to admins_categories_path(@category)
+ if @category.update(category_params)
+ 	flash[:notice] = 'ジャンルの編集に成功しました。'
+ 	redirect_to admins_categories_path(@category)
+ else
+ 	flash[:notice] = 'ジャンルの編集に失敗しました。'
+ end
 end
 
 def create
  @category = Category.new(category_params)
- @category.save
- redirect_to admins_categories_path
+ if @category.save
+ 	flash[:notice] = 'ジャンルの編集に成功しました。'
+ 	redirect_to admins_categories_path
+ else
+ 	flash[:notice] = 'ジャンルの新規作成に失敗しました。'
+ end
 end
 
 def category_params

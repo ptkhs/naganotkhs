@@ -1,7 +1,10 @@
+<div class="container">
+  <div class="row">
 <h1>商品一覧画面</h1>
-<table class="table">
+  <div class="col-xs-8 col-xs-offset-2">
+<table class="table table-responsive table-bordered">
 <thead>
-    <tr>
+    <tr class="active">
       <th>商品ID</th>
       <th>商品名</th>
       <th>税抜価格</th>
@@ -26,5 +29,9 @@
   <% end %>
 </tbody>
 </table>
-
 <%= link_to "新規登録", admins_item_new_path_path, class:'btn btn-info' %>
+</div>
+<div class="col-xs-2">
+</div>
+</div>
+</div>

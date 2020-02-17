@@ -9,6 +9,7 @@ class EndUsersController < ApplicationController
 		@end_user.status = 0
 		@end_user.save
 		sign_out @end_user
+		flash[:notice] ='退会しました。'
 		redirect_to root_path
 	end
 	def mypage
@@ -22,13 +23,16 @@ class EndUsersController < ApplicationController
 		end_user = current_end_user
 		end_user.password = params[:password]
 		end_user.password_confirmation = params[:password]
+		flash[:notice] = 'パスワードの変更をしました'
 		end_user.save
 	end
 	def update
 		@end_user = current_end_user
 		if @end_user.update(end_user_params)
+			flash[:notice] ='ユーザー情報の更新をしました'
     		redirect_to end_users_mypage_path
     	else
+    		flash[:notice] ='ユーザー情報の更新に失敗しました'
     		render :edit
     	end
 	end

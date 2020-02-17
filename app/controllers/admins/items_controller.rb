@@ -18,10 +18,12 @@ class Admins::ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
+      flash[:notice] = '商品の編集に成功しました。'
       redirect_to admins_item_show_path_path(@item)
     else
       @item = Item.find(params[:id])
       @categories = Category.all
+      flash[:notice] = '商品の編集に失敗しました。'
       render :edit
     end
   end
@@ -33,11 +35,14 @@ class Admins::ItemsController < ApplicationController
 
   def create
       @item = Item.new(item_params)
+      @item.sort_item = 0
       if @item.save
+        flash[:notice] = '商品の作成に成功しました。'
         redirect_to admins_item_show_path_path(@item)
       else
         @item = Item.new
         @categories = Category.all
+        flash[:notice] = '商品の作成に失敗しました。'
         render :new
       end
   end
