@@ -1,47 +1,38 @@
+<div class ="row">
+    <div class = "col-xs-2">
 
-    <div class ="row">
-        <div class = "col-xs-2">
-
-                    <h2>ジャンル検索</h2><br>
-                    <% @categories.each do |category| %>
-                    <table class="table table table-hove">
-                        <tr class="warning">
-                          <td><h4><%= link_to category.name, end_users_categories_show_path(category) %></h4></td>
-                        </tr>
-                    </table>
-                    <% end %>
+        <h2>ジャンル検索</h2><br>
+        <% @categories.each do |category| %>
+        <table class="table table table-hove">
+            <tr class="warning">
+                <td><h4><%= link_to category.name, end_users_categories_show_path(category) %></h4></td>
+            </tr>
+        </table>
+        <% end %>
     </div>
-
-
-<div class = "col-xs-5">
-
-	          <%= attachment_image_tag @item, :image, :fill, 500, 500, class: "", fallback: "noimage.jpg",size:'500x500'%>
-</div>
-<div class ="col-xs-5">
-    <br><br><br>
-                <h1><td><%= @item.name %></td><br></h1><br>
-                <p><td><%= @item.discription %></td></p><br>
-                <p class = "item_price"></p>
-                <h1><td>¥</td><td><%= (@price_zeikomi).to_i.to_s(:delimited) %></td><td>(税込)</td>
+    <div class ="container">
+        <div class = "col-xs-6">
+            <%= attachment_image_tag @item, :image, :fill, 500, 500, class: "", fallback: "noimage.jpg",size:'500x500'%>
+        </div>
+        <div class ="col-xs-5">
+            <br><br><br>
+            <h1><td><%= @item.name %></td><br></h1><br>
+            <p><td><%= @item.discription %></td></p><br>
+            <p class = "item_price"></p>
+            <h1><td>¥</td><td><%= (@price_zeikomi).to_i.to_s(:delimited) %></td><td>(税込)</td>
                 <br></h1><br><br>
-                <% if end_user_signed_in? && @item.status == true %>
-                <%= form_for @cart ,url: carts_add_path do |f| %>
-
-                 <%= f.select :item_quantity, [["1",1],["2",2],["3",3],["4",4],["5",5]]%> 個
-                 <%= f.submit "カートに入れる" %>
-                 <% end %>
-
-<% elsif end_user_signed_in? && @item.status == false %>
-<h1>現在販売停止中です</h1>
-
-<% else %>
-<h1>ログインして下さい。</h1>
-
-
-
-
-
-<% end %>
-</div>
-</div>
-</div>
+            <% if end_user_signed_in? && @item.status == true %>
+                  <%= form_for @cart ,url: carts_add_path do |f| %>
+                    <%= f.select :item_quantity, [["1",1],["2",2],["3",3],["4",4],["5",5]]%> 個
+                    <%= f.submit "カートに入れる" %>
+                  <% end %>
+            <% elsif end_user_signed_in? && @item.status == false %>
+                  <h1>売り切れ中です。</h1>
+            <% else %>
+                <h2>ご購入いただくには、
+                    <%= link_to "ログイン", new_end_user_session_path  %>
+                して下さい。</h2>
+            <% end %>
+            </div>
+        </div>
+    </div>
