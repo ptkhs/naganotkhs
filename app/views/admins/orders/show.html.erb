@@ -52,7 +52,7 @@
 						<td><%= orderdetail.item.name %></td>
 						<td><%= (((orderdetail.purchase_price)*1.10).to_i).to_s(:delimited) %></td>
 						<td><%= orderdetail.purchase_quantity %></td>
-						<td><%= (((orderdetail.purchase_price*orderdetail.purchase_quantity)*1.10).to_i).to_s(:delimited) %></td>
+						<td><%= (((orderdetail.purchase_price*orderdetail.purchase_quantity)*1.10).to_i).to_s(:delimited) %>
 						<td><%= f.select :production_status, {'着手不可': 0,'製作待ち': 1,'製作中': 2,'製作完了': 3} %>
 					        <%= f.submit "更新", class: "btn btn-info" %></td>
 					    <% end %>

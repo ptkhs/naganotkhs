@@ -27,7 +27,7 @@
 					<% current_end_user.carts.each do |cart| %>
 					　<tbody>
 						<tr>
-							<td><%= attachment_image_tag cart.item, :image, :fill, 50, 50, class: "", fallback: ""%><%= cart.item.name %></td>
+							<td><%= attachment_image_tag cart.item, :image, :fill, 50, 50, class: "", fallback: "noimage.jpg",size:'50x50'%><%= cart.item.name %></td>
 							<td><%= (cart.item.price * 1.10).to_i.to_s(:delimited) %></td>
 							<%= form_for (cart), url: carts_path do |f| %>
 							<td><%= f.number_field :item_quantity, class: "qtty", min: 1, max: 99%><%= f.submit '更新', class: "btn-sm btn-default"%></td>
