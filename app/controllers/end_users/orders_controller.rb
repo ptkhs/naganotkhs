@@ -78,7 +78,6 @@ class EndUsers::OrdersController < ApplicationController
       @destination.address = @order.address
       @destination.end_user_id = current_end_user.id
       @destination.fulladdress = @order.zipcode + @order.address + @order.name
-      binding.pry
       @destination.save
     end
     @order.save
