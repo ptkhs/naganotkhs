@@ -33,6 +33,7 @@ class Admins::ItemsController < ApplicationController
 
   def create
       @item = Item.new(item_params)
+      @item.sort_item = 0
       if @item.save
         redirect_to admins_item_show_path_path(@item)
       else
