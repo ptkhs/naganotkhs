@@ -15,6 +15,7 @@ class CartsController < ApplicationController
 		cart_item = Cart.new(item_id:item.id,end_user_id:current_end_user.id,item_quantity:params[:cart][:item_quantity])
 		cart_item.save
 		redirect_to carts_path
+		flash[:notice] = "カートに商品を追加しました！"
 	  else
 	    @cart_item.item_quantity += 1
 		@cart_item.save
@@ -26,6 +27,7 @@ class CartsController < ApplicationController
 		@cart_item = Cart.find(cart_params[:id])
 		if @cart_item.update(cart_params)
 			redirect_to carts_path
+			flash[:notice] = "カートの商品を更新しました！"
 		else render :index
 		end
 	end
@@ -35,6 +37,7 @@ class CartsController < ApplicationController
 		@cart_item = Cart.find(params[:id])
 		@cart_item.destroy
 		redirect_to carts_path
+		flash[:notice] = "カートの商品を削除しました！"
 	end
 
 
@@ -42,6 +45,7 @@ class CartsController < ApplicationController
 		@cart_items = Cart.where(end_user_id:current_end_user)
 		@cart_items.destroy_all
 		redirect_to carts_path
+		flash[:notice] = "カートを空にしました！"
 	end
 
 private

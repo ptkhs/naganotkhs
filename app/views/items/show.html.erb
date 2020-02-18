@@ -28,6 +28,8 @@
                   <% end %>
             <% elsif end_user_signed_in? && @item.status == false %>
                   <h1>売り切れ中です。</h1>
+            <% elsif end_user_signed_in? == false && @item.status == false %>
+                 <h1>売り切れ中です。</h1>
             <% else %>
                 <h2>ご購入いただくには、
                     <%= link_to "ログイン", new_end_user_session_path  %>
