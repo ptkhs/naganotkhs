@@ -61,4 +61,5 @@ class Admins::OrdersController < ApplicationController
   def order_details_params
     params.require(:order_detail).permit(:item_id, :order_id, :production_status, :purchase_quantity, :purchase_price)
   end
+ end
 end
