@@ -18,11 +18,11 @@
         <%= order.created_at.strftime("%Y-%m-%d %H:%M") %></td>
   		<td><%= order.end_user.lastname + order.end_user.firstname %></td>
   		<td><%= order.allquantity %></td>
-  		<td><% case order.status 
-           when 0 %>入金待ち
-        <% when 1 %>入金確認
-        <% when 2 %>製作中
-        <% when 3 %>発送準備中
+  		<td><% case order.status
+           when 0 %>入金待ち</td>
+        <% when 1 %>入金確認</td>
+        <% when 2 %>製作中</td>
+        <% when 3 %>発送準備中</td>
         <% when 4 %>発送済</td>
   		    <% end %>
           <% end %>

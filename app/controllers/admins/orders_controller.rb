@@ -46,7 +46,6 @@ class Admins::OrdersController < ApplicationController
         end
         end
       end
-    else
       flash[:notice] = "注文ステータスの更新に成功しました。"
       redirect_to admins_orders_show_path(@order)
     end
@@ -62,4 +61,3 @@ class Admins::OrdersController < ApplicationController
     params.require(:order_detail).permit(:item_id, :order_id, :production_status, :purchase_quantity, :purchase_price)
   end
  end
-end
