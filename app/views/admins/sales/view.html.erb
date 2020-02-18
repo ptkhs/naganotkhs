@@ -1,0 +1,54 @@
+<div class="container">
+	<h1>売上管理画面</h1>
+	<div class="row">
+		<div class="col-xs-6 col-xs-offset-3">
+<table class="table table-bordered">
+	<thead>
+		<tr class="active">
+			<th></th>
+			<% if params[:method] == "2" then %>
+				<th><%= params[:start_day] %>から<%= params[:finish_day] %>までの期間</th>
+			<% else %>
+			<th><%= @label1 %></th>
+			<th><%= @label2 %></th>
+			<th><%= @label3 %></th>
+			<% end %>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>売上</th>
+			<th><%= @charge_sum.to_s(:delimited) %>円</th>
+			<% if params[:method] == "1" %>
+			<th><%= @last_charge_sum.to_s(:delimited) %>円</th>
+			<% if @dif < 0 then %>
+				<th class="danger"><%= @dif.to_s(:delimited) %>円</th>
+			<% elsif @dif == 0 %>
+				<th class="info">±<%= @dif.to_s(:delimited) %>円</th>
+			<% else %>
+				<th class="success">+<%= @dif.to_s(:delimited) %>円</th>
+			<% end %>
+			<% end %>
+		</tr>
+		<tr>
+			<th>注文件数</th>
+			<th><%= @orders_count %>件</th>
+			<% if params[:method] == "1" %>
+			<th><%= @last_orders_count %>件</th>
+			<% if @count_dif < 0 then %>
+				<th class="danger"><%= @count_dif %>件</th>
+			<% elsif @count_dif == 0 %>
+				<th class="info">±<%= @count_dif %>件</th>
+			<% else %>
+				<th class="success">+<%= @count_dif %>件</th>
+			<% end %>
+			<% end %>
+		</tr>
+	</tbody>
+</table>
+<%= link_to "戻る", admins_sales_path, class:'btn btn-info' %>
+</div>
+<div class="col-xs-3">
+</div>
+</div>
+</div>

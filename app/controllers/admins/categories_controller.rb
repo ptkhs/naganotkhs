@@ -27,6 +27,7 @@ def create
  	redirect_to admins_categories_path
  else
  	flash[:notice] = 'ジャンルの新規作成に失敗しました。'
+ 	redirect_to admins_categories_path
  end
 end
 
