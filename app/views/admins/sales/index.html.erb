@@ -1,0 +1,25 @@
+<div class="container">
+	<h1>売上管理画面</h1>
+	<div class="row">
+		<div class="col-xs-6 col-xs-offset-3">
+<%= form_tag(admins_sales_view_path, method: :get, data: { remote: false }) do %>
+  <h2>期間を選択する</h2>
+  <%= radio_button_tag :method,1,true %>
+  <%= select_tag :between, options_for_select([["今日","1"], ["今週","2"], ["今月","3"], ["今年","4"]],:selected=>"1") %>
+  <h2>・期間を直接指定する</h2>
+  <%= radio_button_tag :method,2,false %>
+  <div class="row">
+  	<div class="col-xs-6">
+  <%= date_field_tag :start_day, {}, class: 'form-control' %><label>から</label>
+  	</div>
+  	<div class="col-xs-6">
+  <%= date_field_tag :finish_day, {}, class: 'form-control' %><label>まで</label>
+  	</div>
+</div>
+  <%= submit_tag '表示', :name => nil, class:'btn btn-info' %>
+<% end %>
+</div>
+<div class="col-xs-3">
+	</div>
+</div>
+</div>

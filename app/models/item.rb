@@ -7,5 +7,7 @@ class Item < ApplicationRecord
 	def self.search(search)
       return Item.all unless search
       Item.where(['name LIKE ?', "%#{search}%"])
-  end
+  	end
+  	validates :name, presence: true
+  	validates :discription, presence: true
 end

@@ -46,6 +46,11 @@ Rails.application.routes.draw do
     patch 'end_users/:id', to: 'end_users#update'
   end
 
+  namespace :admins do
+    get 'sales/', to: 'sales#index', :as => :sales
+    get 'sales/view', to: 'sales#view', :as => :sales_view
+  end
+
   scope module: :end_users do
     get 'orders/new', to: 'orders#new', :as => :orders_new
     post 'orders/new', to: 'orders#create', :as => :orders_create
