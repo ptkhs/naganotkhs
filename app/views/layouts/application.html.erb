@@ -5,6 +5,7 @@
     <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/1b7a645abd.js" crossorigin="anonymous"></script>
   <title>ながのCAKE</title>
 </head>
 
@@ -15,7 +16,7 @@
     <div class="navbar-header">
       <li>
         <%= link_to root_path do %>
-        <%= image_tag'logo.png'%>
+        <%= image_tag'logo.png', size:'197x50'%>
         <% end %>
       </li>
     </div>
@@ -61,9 +62,9 @@
   <% else %>
 
   <% if admin_signed_in? %>
-<li><%= form_tag(search_path,:method => 'get') do %>
-  <%= text_field_tag :search, nil, :placeholder => 'ユーザーの氏名で検索できます' %>
-  <%= hidden_field_tag :target, 'user' %>
+<li><%= form_tag(search_path,:method => 'get',class:'navbar-form') do %>
+  <%= select_tag :target, options_for_select([["ユーザー","user"], ["商品","item"]],:selected=>"user") %>
+  <%= text_field_tag :search, nil %>
   <%= submit_tag 'Search', :name => nil %>
 <% end %>
 </li>
@@ -107,7 +108,7 @@
   </nav>
 
   <% else %>
-<li><%= form_tag(search_path, method: :get, data: { remote: false }) do %>
+<li><%= form_tag(search_path, method: :get, data: { remote: false },class:'navbar-form') do %>
   <%= text_field_tag :search, nil, :placeholder => '商品名で検索できます' %>
   <%= hidden_field_tag :target, 'item' %>
   <%= submit_tag 'Search', :name => nil %>
