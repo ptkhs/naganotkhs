@@ -71,4 +71,4 @@
 
 ## Author
 
-[tkhs](https://github.com/ptkhs/naganotkhs)
+[tkhs](https://github.com/ptkhs)
