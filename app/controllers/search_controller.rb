@@ -1,4 +1,5 @@
 class SearchController < ApplicationController
+	before_action :header_login_check
 	def index
 		@categories = Category.where(available: true)
 		@target = params[:target]

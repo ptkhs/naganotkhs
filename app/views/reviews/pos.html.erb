@@ -1,0 +1,16 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-6 col-xs-offset-3">
+<%= form_for @order, url: review_update_path(order_id: params[:order_id]) do |f| %>
+	<label>評価を0~5で選んでください</label>
+	<%= f.select :star, ['0', '1', '2', '3', '4', '5'],
+class: 'form-control' %><br>
+   <%= f.text_area :review, class:'form-control' %>
+   <%= f.hidden_field :status, :value => 5, class:'form-control' %><br>
+   <%= f.submit '送信',class:'btn btn-success' %>
+   <% end %>
+   		</div>
+   		<div class="col-xs-3">
+   		</div>
+   	</div>
+   </div>

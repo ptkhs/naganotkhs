@@ -91,6 +91,7 @@ devise_for :end_users, controllers: {
   post '/items/:id', to: 'carts#create', :as => :carts_add
 
   get '/search', to: 'search#index', :as => :search
-
-
+  get '/review', to: 'reviews#index', :as => :review
+  get '/review/pos', to: 'reviews#pos', :as => :review_pos
+  patch '/review/pos', to: 'reviews#update', :as => :review_update
 end
