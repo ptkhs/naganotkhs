@@ -49,7 +49,7 @@ class Admins::OrdersController < ApplicationController
       flash[:notice] = "注文ステータスの更新に成功しました。"
       redirect_to admins_orders_show_path(@order)
     end
-    end
+  end
 
   private
 

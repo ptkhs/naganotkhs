@@ -6,7 +6,7 @@
       <table class ="table">
         <tr>
           <span class="text">
-             <td>顧客ID</td>
+             <td class="active">顧客ID</td>
           </span>
 
           <td><%= @end_user.id %>
@@ -24,31 +24,31 @@
       <% end %>
 
         <tr>
-          <td>氏名</td>
+          <td class="active">氏名</td>
           <td><%= @end_user.lastname %><%= @end_user.firstname %></td>
         </tr>
 
         <tr>
-          <td>フリガナ</td>
+          <td class="active">フリガナ</td>
           <td><%= @end_user.lastname_kana %><%= @end_user.firstname_kana %></td>
         </tr>
 
         <tr>
-          <td>郵便番号</td>
+          <td class="active">郵便番号</td>
           <td><%= @end_user.zipcode %></td>
         </tr>
 
         <tr>
-          <td>住所</td><td><%= @end_user.address %></td>
+          <td class="active">住所</td><td><%= @end_user.address %></td>
         </tr>
 
         <tr>
-          <td>電話番号</td>
+          <td class="active">電話番号</td>
           <td><%= @end_user.phone_number %></td>
         </tr>
 
         <tr>
-          <td>メールアドレス</td>
+          <td class="active">メールアドレス</td>
           <td><%= @end_user.email %></td>
         </tr>
       </table>

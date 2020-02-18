@@ -28,15 +28,15 @@
             <h1>請求金額</h1>
         	<table class ="table table-bordered">
         		<tr>
-        			<td class="active">送料</td>
+        			<td class="active"><strong>送料</strong></td>
         			<td><%= @pre_order.fee %></td>
         		</tr>
         		<tr>
-        			<td class="active">商品合計</td>
+        			<td class="active"><strong>商品合計</strong></td>
         			<td><%= @buying_item_price.to_i.to_s(:delimited) %></td>
         		</tr>
         		<tr>
-        			<td class="active">請求金額</td>
+        			<td class="active"><strong>請求金額</strong></td>
         			<td><%= @total_price.to_i.to_s (:delimited)%></td>
         		</tr>
         	</table>
@@ -45,9 +45,10 @@
     <div class="row">
     	<h2>支払い方法</h2>
         <%= @pre_order.paymethod %>
-    	<h2>お届け先</h2><br>
+    	<h2>お届け先</h2>
     	<%= @pre_order.zipcode + @pre_order.address %><br>
         <%= @pre_order.name %><br><div>　</div>
-    	<%= link_to "注文を確定する", orders_send_path(@pre_order, params: { order: { end_user_id: @pre_order.end_user_id , paymethod: @pre_order.paymethod, zipcode: @pre_order.zipcode, address: @pre_order.address, name: @pre_order.name, charge: @pre_order.charge, fee: @pre_order.fee, status: @pre_order.status, destselect: @pre_order.destselect } }), method: :post , class:"btn btn-info"%>
+    	<%= link_to "注文を確定する", orders_send_path(@pre_order, params: { order: { end_user_id: @pre_order.end_user_id , paymethod: @pre_order.paymethod, zipcode: @pre_order.zipcode, address: @pre_order.address, name: @pre_order.name, charge: @pre_order.charge, fee: @pre_order.fee, status: @pre_order.status, destselect: @pre_order.destselect } }), method: :post , class: "btn btn-info col-xs-4 col-xs-offset-4"%>
+        <!-- ボタン巨大化問題　未解決です -->
     </div>
 </div>
