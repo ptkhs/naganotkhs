@@ -24,7 +24,7 @@
             <% if end_user_signed_in? && @item.status == true %>
                   <%= form_for @cart ,url: carts_add_path do |f| %>
                     <%= f.select :item_quantity, [["1",1],["2",2],["3",3],["4",4],["5",5]]%> 個
-                    <%= f.submit "カートに入れる" %>
+                    <%= f.submit "カートに入れる", class: "btn-xs btn-info" %>
                   <% end %>
             <% elsif end_user_signed_in? && @item.status == false %>
                   <h1>売り切れ中です。</h1>
