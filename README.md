@@ -4,50 +4,53 @@
 ## Overview
  This app is an EC site for Nagano cake which sells cakes for over 45 years in Nagano prefecture in Japan.
 
-## Description
+## Usage and Functions
 
-## Features
 ### end users
-- you can sign up, log in/out with email addres and passwords, and also close an account.
-- you can see products without log in.
+- You can sign up, log in/out with email addres and passwords, and also close an account.
+- You can see products without log in.
 - You can add multiple products to a cart, change the qty, and delte them from the cart.
+- Products are sorted by popularity.
 - User information can be edited.
 - Order history shows the following information.
    - Order date
    - Order details
    - Total price
    - Sending address
-   - Status(Waiting for payment/Waiting for shipping/Shipped out)
-- Following information is  registered when end users sign up
+   - Status(Waiting for payment/Waiting for shipping/Shipped)
+- Following information is registered when end users sign up
    - User name (Given name/Family name)
+     -Basically, Written by Kanji and Katakana in Japan.
    - Zipcode
    - Adress
    -Phone number
-   -Mail adress
+   -Mail address
    -Pass words
+- You can search products from search bar at the top.(Partial match)
+- 
 ### Admin
-管理者用メールアドレスとパスワードでログインできます。
-商品の新規追加、編集、販売停止が行えます。
-商品情報は下記のものを持っています。
-商品名
-商品説明文
-ジャンル
-税抜価格
-商品画像
-販売ステータス(販売中/売り切れ)
-会員登録されているユーザ情報の閲覧、編集、退会処理が行えます。
-ユーザの注文履歴が一覧・詳細表示できます。
-注文履歴には注文ごとに下記の情報が表示されます。
-購入者
-購入日
-購入内容
-請求額合計
-送付先
-注文ステータス(入金待ち/入金済み/発送済み)
-製作ステータス(製作待ち/製作中/製作完了)
-注文ステータス、製作ステータスの更新ができます。
-使用言語
+- You can log in/out with email address and password.
+- You can add/edit products, genres.
+- Products have following information.
+    - Name
+    - Description
+    - Genre
+    - Price (Non-taxed)
+    - Image
+    - Selling status(on sale/sold out)
 
+- You can edit info of end users including closing accouunt.
+- You can see orders and order details.
+- Order details have following informaiton.
+   - Buyer
+   - Order date
+   - Order details
+   - Total price
+   - Shipping address
+   - Order status(Waiting for payment/paid/Shipped)
+   - Production status(Waiting for producing/Producing/Production completed)
+   - You can update Order and production stutas.
+   - You can search earnings. (eg.compared to the last day.)
 
 ## Languages
 - HTML&CSS
@@ -65,11 +68,6 @@
 - devise
 - pry-byebug
 - jquery-rails
-
-
-## Usage
- admin
- end_users
 
 ## Author
 
