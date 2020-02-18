@@ -15,7 +15,7 @@
     <div class="navbar-header">
       <li>
         <%= link_to root_path do %>
-        <%= image_tag'logo.png'%>
+        <%= image_tag'logo.png', size:'197x50'%>
         <% end %>
       </li>
     </div>
@@ -61,7 +61,7 @@
   <% else %>
 
   <% if admin_signed_in? %>
-<li><%= form_tag(search_path,:method => 'get') do %>
+<li><%= form_tag(search_path,:method => 'get',class:'navbar-form') do %>
   <%= text_field_tag :search, nil, :placeholder => 'ユーザーの氏名で検索できます' %>
   <%= hidden_field_tag :target, 'user' %>
   <%= submit_tag 'Search', :name => nil %>
@@ -107,7 +107,7 @@
   </nav>
 
   <% else %>
-<li><%= form_tag(search_path, method: :get, data: { remote: false }) do %>
+<li><%= form_tag(search_path, method: :get, data: { remote: false },class:'navbar-form') do %>
   <%= text_field_tag :search, nil, :placeholder => '商品名で検索できます' %>
   <%= hidden_field_tag :target, 'item' %>
   <%= submit_tag 'Search', :name => nil %>
