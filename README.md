@@ -20,14 +20,15 @@
    - Status(Waiting for payment/Waiting for shipping/Shipped)
 - Following information is registered when end users sign up
    - User name (Given name/Family name)
-     -Basically, Written by Kanji and Katakana in Japan.
+     -Basically, Written by Kanji and Katakana in Japanese.
    - Zipcode
    - Adress
    -Phone number
    -Mail address
    -Pass words
 - You can search products from search bar at the top.(Partial match)
-- 
+- The servise can be reviewed and ranked with comments and pont evaluation.(out of 5)
+
 ### Admin
 - You can log in/out with email address and password.
 - You can add/edit products, genres.
@@ -50,7 +51,7 @@
    - Order status(Waiting for payment/paid/Shipped)
    - Production status(Waiting for producing/Producing/Production completed)
    - You can update Order and production stutas.
-   - You can search earnings. (eg.compared to the last day.)
+   - You can search earnings. (eg.compared to the last day/year)
 
 ## Languages
 - HTML&CSS
